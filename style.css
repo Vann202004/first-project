@@ -1724,7 +1724,7 @@ footer{
     
     .progress-ring__track,
     .progress-ring__circle {
-        stroke-width: 5px;
+        stroke-width: 6px;
     }
 
     .music-control-btn {
