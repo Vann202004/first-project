@@ -352,6 +352,7 @@ function initBackgroundMusic() {
     
     let current = 0;
     let isPlaying = false;
+    let currentPlayAttempt = null;
 
     // Get radius and calculate circumference for the progress ring
     const radius = parseFloat(progressCircle.getAttribute('r'));
@@ -404,6 +405,12 @@ function initBackgroundMusic() {
             return;
         }
         
+        // Pause current track before loading new one
+        const wasPlaying = isPlaying;
+        if (isPlaying) {
+            pauseTrack();
+        }
+        
         const sourceElement = musicSources[index];
         
         // Check if source is valid
@@ -430,9 +437,11 @@ function initBackgroundMusic() {
         // Reset progress
         progressCircle.style.strokeDashoffset = circumference;
         
-        // Play if was previously playing
-        if (isPlaying) {
-            playTrack();
+        // Play if was previously playing, but use setTimeout to ensure audio is loaded
+        if (wasPlaying) {
+            setTimeout(() => {
+                playTrack();
+            }, 100);
         }
     }
 
@@ -443,26 +452,65 @@ function initBackgroundMusic() {
             return;
         }
         
+        // Cancel any previous play attempt
+        if (currentPlayAttempt) {
+            currentPlayAttempt.cancel();
+        }
+        
+        // Set a flag to indicate we're attempting to play
+        let playAttemptInProgress = true;
+        
+        // Create a new play attempt
+        currentPlayAttempt = {
+            cancel: function() {
+                playAttemptInProgress = false;
+            }
+        };
+        
+        // Update UI immediately to provide feedback
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        isPlaying = true;
+        
         audio.play()
             .then(() => {
-                playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                isPlaying = true;
+                if (playAttemptInProgress) { // Only update UI if we haven't cancelled
+                    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    isPlaying = true;
+                }
             })
             .catch(error => {
                 console.error("Error playing audio:", error, "Source:", audio.src);
-                playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-                isPlaying = false;
-                
-                // Try next track if current one fails
-                nextTrack();
+                // Only update UI if this play attempt is still relevant
+                if (playAttemptInProgress) {
+                    playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                    isPlaying = false;
+                    
+                    // Try next track if current one fails
+                    nextTrack();
+                }
+            })
+            .finally(() => {
+                if (currentPlayAttempt && !playAttemptInProgress) {
+                    currentPlayAttempt = null;
+                }
             });
+        
+        return currentPlayAttempt;
     }
 
     // Pause current track
     function pauseTrack() {
-        audio.pause();
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-        isPlaying = false;
+        // Cancel any pending play attempt
+        if (currentPlayAttempt) {
+            currentPlayAttempt.cancel();
+            currentPlayAttempt = null;
+        }
+        
+        if (audio) {
+            audio.pause();
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            isPlaying = false;
+        }
     }
 
     // Toggle play/pause
@@ -500,7 +548,9 @@ function initBackgroundMusic() {
     
     // Pause when tab is hidden, resume intention respected
     document.addEventListener('visibilitychange', () => {
-        if (document.hidden && isPlaying) pauseTrack();
+        if (document.hidden && isPlaying) {
+            pauseTrack();
+        }
     });
     
     // Initialize the player
