@@ -334,9 +334,22 @@ function initBackgroundMusic() {
     const currentTrackName = document.getElementById('current-track-name');
     const trackArtistElement = document.getElementById('track-artist');
     const progressCircle = document.querySelector('.progress-ring__circle');
+    
+    // Check if audio elements exist
+    if (!audio || !progressCircle) {
+        console.warn("Audio player elements not found in the DOM");
+        return;
+    }
 
-    // Get all audio sources
-    let musicSources = Array.from(document.querySelectorAll('#music-sources audio'));
+    // Get all audio sources - modified to directly get the sources
+    let musicSources = Array.from(document.querySelectorAll('#music-sources source'));
+    
+    // Check if we have music sources
+    if (musicSources.length === 0) {
+        console.warn("No music sources found in #music-sources");
+        return;
+    }
+    
     let current = 0;
     let isPlaying = false;
 
@@ -386,15 +399,30 @@ function initBackgroundMusic() {
 
     // Function to load and play a track
     function loadTrack(index) {
-        const currentAudio = musicSources[index];
-        const sourceElement = currentAudio.querySelector('source');
+        if (index >= musicSources.length) {
+            console.error("Track index out of bounds:", index);
+            return;
+        }
         
-        // Get track metadata
-        const title = currentAudio.getAttribute('data-title') || 'Unknown Title';
-        const artist = currentAudio.getAttribute('data-artist') || 'Unknown Artist';
+        const sourceElement = musicSources[index];
+        
+        // Check if source is valid
+        if (!sourceElement || !sourceElement.src) {
+            console.error("Invalid source element at index:", index);
+            return;
+        }
+        
+        // Get track metadata - now getting from the parent audio element
+        const parentAudio = sourceElement.parentElement;
+        const title = parentAudio ? (parentAudio.getAttribute('data-title') || 'Unknown Title') : 'Unknown Title';
+        const artist = parentAudio ? (parentAudio.getAttribute('data-artist') || 'Unknown Artist') : 'Unknown Artist';
         
         // Set the source for the main audio element
         audio.src = sourceElement.src;
+        
+        // Log the source to help with debugging
+        console.log("Loading track:", title, "by", artist, "from", sourceElement.src);
+        
         audio.load();
         
         updateNowPlaying(title, artist);
@@ -410,15 +438,23 @@ function initBackgroundMusic() {
 
     // Play current track
     function playTrack() {
+        if (!audio.src) {
+            console.error("No audio source set");
+            return;
+        }
+        
         audio.play()
             .then(() => {
                 playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
                 isPlaying = true;
             })
             .catch(error => {
-                console.error("Error playing audio:", error);
+                console.error("Error playing audio:", error, "Source:", audio.src);
                 playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
                 isPlaying = false;
+                
+                // Try next track if current one fails
+                nextTrack();
             });
     }
 
@@ -458,9 +494,9 @@ function initBackgroundMusic() {
     }
 
     // Event listeners
-    playPauseBtn.addEventListener('click', togglePlayPause);
-    prevBtn.addEventListener('click', prevTrack);
-    nextBtn.addEventListener('click', nextTrack);
+    if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlayPause);
+    if (prevBtn) prevBtn.addEventListener('click', prevTrack);
+    if (nextBtn) nextBtn.addEventListener('click', nextTrack);
     
     // Pause when tab is hidden, resume intention respected
     document.addEventListener('visibilitychange', () => {
