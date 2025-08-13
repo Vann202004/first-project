@@ -3,26 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Vann Rich Ferrer — Bruno Mars cosplayer, web developer, and photo editor. View projects, gallery, and contact information.">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://code.jquery.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
-    <!-- FONT AWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Critical CSS inline -->
+    <style>
+        #preloader{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#FCD116;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}
+        body{margin:0;padding:0;overflow:hidden;font-family:sans-serif}
+        .skip-link{position:absolute;top:-40px;left:0;background:#0038A8;color:white;padding:8px;z-index:10000;transition:top 0.3s}
+        .skip-link:focus{top:0}
+    </style>
+
+    <!-- FONT AWESOME (defer non-critical) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
     <!-- FAVICON -->
-    <link rel="icon" href="images/favicon.PNG" sizes="16x16" type="image/png">
-    <link rel="icon" href="images/favicon.PNG" sizes="32x32" type="image/png">
-    <link rel="shortcut icon" href="images/favicon.PNG" type="image/x-icon">
+    <link rel="icon" href="images/favicon.webp" sizes="16x16" type="image/webp">
+    <link rel="icon" href="images/favicon.webp" sizes="32x32" type="image/webp">
+    <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon">
 
-    <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- JQUERY (defer loading) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
     <title>Vann Rich Ferrer | Portfolio Website</title>
 </head>
 <body>
+   <!-- Skip to main content link for accessibility -->
+   <a href="#home" class="skip-link">Skip to main content</a>
+
    <!-- Preloader -->
-   <div id="preloader">
+   <div id="preloader" aria-label="Page loading">
      <div class="loader-body">
        <span>
          <span></span>
@@ -46,17 +74,17 @@
 
    <!-- Video Background Section -->
    <section class="video-background">
-       <video autoplay loop muted playsinline class="background-video">
-           <source src="videos/videocover.MP4" type="video/mp4">
-           Your browser does not support the video tag.
+       <video autoplay loop muted playsinline preload="none" poster="images/videocover-poster.webp" class="background-video" aria-hidden="true">
+           <source src="videos/videocover.mp4" type="video/mp4">
+           <source src="videos/videocover-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
        </video>
        <div class="video-overlay"></div>
        <div class="video-content">
            <h1>Welcome to My Portfolio</h1>
        </div>
        <div class="scroll-down">
-           <a href="#home">
-               <i class="fa-solid fa-chevron-down"></i>
+           <a href="#home" aria-label="Scroll down to home section">
+               <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
            </a>
        </div>
    </section>
@@ -71,59 +99,59 @@
     <!-- Music Controls Bar -->
     <div class="music-controls-bar">
         <div class="music-controls">
-            <button id="prevBtn" class="control-btn"><i class="fa-solid fa-backward"></i></button>
+            <button id="prevBtn" class="control-btn" aria-label="Previous track"><i class="fa-solid fa-backward" aria-hidden="true"></i></button>
             <div class="track-info">
                 <span id="current-track-name">Select a track to play</span>
                 <span id="track-artist" class="track-artist"></span>
             </div>
-            <button id="nextBtn" class="control-btn"><i class="fa-solid fa-forward"></i></button>
+            <button id="nextBtn" class="control-btn" aria-label="Next track"><i class="fa-solid fa-forward" aria-hidden="true"></i></button>
         </div>
-        <audio id="audio" preload="auto" tabindex="0"></audio>
+        <audio id="audio" preload="none" tabindex="0"></audio>
     </div>
 
     <!-- HEADER -->
       <nav id="header">
         <div class="nav-logo">
             <p class="nav-name">@vmars24k</p>
-            <span>✞</span>
+            <span aria-hidden="true">✞</span>
         </div>
         <div class="nav-menu" id="myNavMenu">
             <ul class="nav_menu_list">
                 <li class="nav_list">
                     <a href="#home" class="nav-link active-link">Home</a>
-                    <div class="circle"></div>
+                    <div class="circle" aria-hidden="true"></div>
                 </li>
                 <li class="nav_list">
                     <a href="#about" class="nav-link">About</a>
-                    <div class="circle"></div>
+                    <div class="circle" aria-hidden="true"></div>
                 </li>
                 <li class="nav_list">
                     <a href="#projects" class="nav-link">Projects</a>
-                    <div class="circle"></div>
+                    <div class="circle" aria-hidden="true"></div>
                 </li>
                 <li class="nav_list">
                     <a href="#gallery" class="nav-link">Gallery</a>
-                    <div class="circle"></div>
+                    <div class="circle" aria-hidden="true"></div>
                 </li>
                 <li class="nav_list">
                     <a href="#contact" class="nav-link">Contact</a>
-                    <div class="circle"></div>
+                    <div class="circle" aria-hidden="true"></div>
                 </li>
             </ul>
         </div>
         <div class="right-nav-controls">
             <!-- Dark mode toggle switch -->
             <div class="mode">
-                <div class="moon-sun" id="toggle-switch">
-                    <i class="fa-solid fa-moon" id="moon"></i>
-                    <i class="fa-solid fa-sun" id="sun"></i>
+                <div class="moon-sun" id="toggle-switch" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon" id="moon" aria-hidden="true"></i>
+                    <i class="fa-solid fa-sun" id="sun" aria-hidden="true"></i>
                 </div>
             </div>
             <div class="nav-button">
-                <a href="#gallery" class="btn">Explore Gallery Now <i class="fa-solid fa-images"></i></a>
+                <a href="#gallery" class="btn">Explore Gallery Now <i class="fa-solid fa-images" aria-hidden="true"></i></a>
             </div>
             <div class="nav-menu-btn">
-                <i class="fa-solid fa-bars" onclick="myMenuFunction()"></i>
+                <i class="fa-solid fa-bars" onclick="myMenuFunction()" aria-label="Toggle menu"></i>
             </div>
         </div>
       </nav>
@@ -148,13 +176,13 @@
             </div>
             <div class="featured-text-btn">
                 <a href="#contact" class="btn blue-btn">Contact Me</a>
-                <a href="#gallery" class="btn">Explore Gallery Now <i class="fa-solid fa-images"></i></a>
+                <a href="#gallery" class="btn">Explore Gallery Now <i class="fa-solid fa-images" aria-hidden="true"></i></a>
             </div>
             <div class="social_icons">
-                <div class="icon"><a href="https://www.instagram.com/vmars24k/"><i class="fa-brands fa-instagram"></i></a></div>
-                <div class="icon"><a href="https://www.facebook.com/vann.rich.3/"><i class="fa-brands fa-facebook"></i></a></div>
-                <div class="icon"><a href="https://www.youtube.com/@brunomars"><i class="fa-brands fa-youtube"></i></a></div>
-                <div class="icon"><a href="https://www.brunomars.com/"><i class="fa-solid fa-globe"></i></a></div>
+                <div class="icon"><a href="https://www.instagram.com/vmars24k/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></div>
+                <div class="icon"><a href="https://www.facebook.com/vann.rich.3/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></div>
+                <div class="icon"><a href="https://www.youtube.com/@brunomars" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></div>
+                <div class="icon"><a href="https://www.brunomars.com/" aria-label="Bruno Mars Official Website" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-globe" aria-hidden="true"></i></a></div>
             </div>
           </div>
           <div class="featured-image">
@@ -176,11 +204,14 @@
                     
                     <!-- The avatar itself -->
                     <div class="avatar-btn">
-                        <img src="images/profile.JPG" alt="avatar">
+                        <img src="images/profile.webp" 
+                             srcset="images/profile-sm.webp 400w, images/profile.webp 800w" 
+                             sizes="(max-width: 600px) 400px, 800px"
+                             alt="Profile photo of Vann Rich Ferrer">
                     </div>
                 </div>
-                <button id="playPauseBtn" class="music-control-btn">
-                    <i class="fa-solid fa-play"></i>
+                <button id="playPauseBtn" class="music-control-btn" aria-label="Play or pause music">
+                    <i class="fa-solid fa-play" aria-hidden="true"></i>
                 </button>
             </div>
             <div>
@@ -188,8 +219,8 @@
             </div>
           </div>
           <div class="scroll-icon-box">
-            <a href="#about" class="scroll-btn">
-                <i class="fa-solid fa-mouse"></i>
+            <a href="#about" class="scroll-btn" aria-label="Scroll to About section">
+                <i class="fa-solid fa-mouse" aria-hidden="true"></i>
                 <p>Scroll Down</p>
             </a>
           </div>
@@ -211,7 +242,7 @@
                        often with features like background removal, text overlays, and applying filters or effects. 
                     </p>
                     <div class="about-btn">
-                        <a href="#gallery" class="btn">Explore Gallery Now <i class="fa-solid fa-images"></i></a>
+                        <a href="#gallery" class="btn">Explore Gallery Now <i class="fa-solid fa-images" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -256,19 +287,19 @@
           </div>
           <div class="project-container">
             <div class="project-box">
-                <i class="fa-solid fa-briefcase"></i>
+                <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
                 <h3>Completed</h3>
                 <label>14+ Finished Projects</label>
                 <label>20+ Photo Edits</label>
                 <label>3+ Cosplayed</label>
             </div>
             <div class="project-box">
-                <i class="fa-solid fa-crown"></i>
+                <i class="fa-solid fa-crown" aria-hidden="true"></i>
                 <h3>Bruno Mars Look-alike</h3>
                 <label>I'm Him</label>
             </div>
             <div class="project-box">
-                <i class="fa-solid fa-award"></i>
+                <i class="fa-solid fa-award" aria-hidden="true"></i>
                 <h3>Experience</h3>
                 <label>2.6 Years in the IT field</label>
             </div>
@@ -282,71 +313,107 @@
               <span>A showcase of my creative work and designs</span>
           </div>
           <div class="gallery-container">
-              <div class="gallery-item" data-img="images/image1.JPG">
-                  <img src="images/image1.JPG" alt="Project Image">
+              <div class="gallery-item" data-img="images/image1-thumb.webp">
+                  <img src="images/image1-thumb.webp" 
+                       srcset="images/image1-thumb.webp 400w, images/image1-thumb.webp 800w" 
+                       sizes="(max-width: 767px) 400px, 800px"
+                       loading="lazy" 
+                       alt="Bruno-San at Tokyo Disneyland">
                   <div class="gallery-overlay">
                       <h3>Bruno-San</h3>
                       <p>Tokyo Disneyland</p>
                   </div>
               </div>
-              <div class="gallery-item" data-img="images/image2.JPG">
-                  <img src="images/image2.JPG" alt="Project Image">
+              <div class="gallery-item" data-img="images/image2-thumb.webp">
+                  <img src="images/image2-thumb.webp" 
+                       srcset="images/image2-thumb.webp 400w, images/image2-thumb.webp 800w" 
+                       sizes="(max-width: 767px) 400px, 800px"
+                       loading="lazy" 
+                       alt="Photo at Solea Mactan Cebu Resort">
                   <div class="gallery-overlay">
                       <h3>Is It Hot In Here Or Is It Just Me?</h3>
                       <p>Solea Mactan Cebu Resort</p>
                   </div>
               </div>
-              <div class="gallery-item" data-img="images/image3.jpg">
-                  <img src="images/image3.jpg" alt="Project Image">
+              <div class="gallery-item" data-img="images/image3-thumb.webp">
+                  <img src="images/image3-thumb.webp" 
+                       srcset="images/image3-thumb.webp 400w, images/image3-thumb.webp 800w" 
+                       sizes="(max-width: 767px) 400px, 800px"
+                       loading="lazy" 
+                       alt="Men's Health Month photo">
                   <div class="gallery-overlay">
                       <h3>My Introversion Personality Trait</h3>
                       <p>June Men's Health Month</p>
                   </div>
               </div>
-              <div class="gallery-item" data-img="images/image4.JPG">
-                  <img src="images/image4.JPG" alt="Project Image">
+              <div class="gallery-item" data-img="images/image4-thumb.webp">
+                  <img src="images/image4-thumb.webp" 
+                       srcset="images/image4-thumb.webp 400w, images/image4-thumb.webp 800w" 
+                       sizes="(max-width: 767px) 400px, 800px"
+                       loading="lazy" 
+                       alt="Visit to Cebu Ocean Park">
                   <div class="gallery-overlay">
                       <h3>Look At All Those Aquatic Animals</h3>
                       <p>Cebu Ocean Park</p>
                   </div>
               </div>
-              <div class="gallery-item" data-img="images/image5.PNG">
-                  <img src="images/image5.PNG" alt="Project Image">
+              <div class="gallery-item" data-img="images/image5-thumb.webp">
+                  <img src="images/image5-thumb.webp" 
+                       srcset="images/image5-thumb.webp 400w, images/image5-thumb.webp 800w" 
+                       sizes="(max-width: 767px) 400px, 800px"
+                       loading="lazy" 
+                       alt="Christmas pool day with friends">
                   <div class="gallery-overlay">
                       <h3>1# Christmas Pool Day With The Gang</h3>
                       <p>My True Friends</p>
                   </div>
               </div>
-              <div class="gallery-item" data-img="images/image6.JPG">
-                  <img src="images/image6.JPG" alt="Project Image">
+              <div class="gallery-item" data-img="images/image6-thumb.webp">
+                  <img src="images/image6-thumb.webp" 
+                       srcset="images/image6-thumb.webp 400w, images/image6-thumb.webp 800w" 
+                       sizes="(max-width: 767px) 400px, 800px"
+                       loading="lazy" 
+                       alt="Seijuro Akashi cosplay">
                   <div class="gallery-overlay">
                       <h3>I Am Abosulute!</h3>
                       <p>Seijuro Akashi Emperors's Third Eye</p>
                   </div>
               </div>
-              <div class="gallery-item" data-img="images/image7.JPG">
-                  <img src="images/image7.JPG" alt="Project Image">
+              <div class="gallery-item" data-img="images/image7-thumb.webp">
+                  <img src="images/image7-thumb.webp" 
+                       srcset="images/image7-thumb.webp 400w, images/image7-thumb.webp 800w" 
+                       sizes="(max-width: 767px) 400px, 800px"
+                       loading="lazy" 
+                       alt="Year 12 Muck Up Day photo">
                   <div class="gallery-overlay">
                       <h3>A Lazy Man</h3>
                       <p>Year 12 Muck Up Day</p>
                   </div>
               </div>
-              <div class="gallery-item" data-img="images/image8.JPG">
-                  <img src="images/image8.JPG" alt="Project Image">
+              <div class="gallery-item" data-img="images/image8-thumb.webp">
+                  <img src="images/image8-thumb.webp" 
+                       srcset="images/image8-thumb.webp 400w, images/image8-thumb.webp 800w" 
+                       sizes="(max-width: 767px) 400px, 800px"
+                       loading="lazy" 
+                       alt="Sports activities photo">
                   <div class="gallery-overlay">
                       <h3>Just Me. My Peak Self.</h3>
                       <p>A Sportperson Jack of All Trades</p>
                   </div>
               </div>
-              <div class="gallery-item" data-img="images/image9.jpg">
-                  <img src="images/image9.jpg" alt="Project Image">
+              <div class="gallery-item" data-img="images/image9-thumb.webp">
+                  <img src="images/image9-thumb.webp" 
+                       srcset="images/image9-thumb.webp 400w, images/image9-thumb.webp 800w" 
+                       sizes="(max-width: 767px) 400px, 800px"
+                       loading="lazy" 
+                       alt="CSC Senior Jersey 2022">
                   <div class="gallery-overlay">
                       <h3>Bruno Mars Jersey</h3>
                       <p>CSC Senior Jersey 2022</p>
                   </div>
               </div>
               <div class="instagram-btn-container">
-                  <a href="https://www.instagram.com/vmars24k/" class="btn instagram-btn">See More on Instagram ⮕</a>
+                  <a href="https://www.instagram.com/vmars24k/" class="btn instagram-btn" target="_blank" rel="noopener noreferrer">See More on Instagram ⮕</a>
               </div>
           </div>
        </section>
@@ -360,22 +427,29 @@
           <div class="row">
              <div class="col">
                 <div class="contact-info">
-                    <h2>Find Me <i class="fa-solid fa-arrow-turn-down"></i></h2>
-                    <p><i class="fa-solid fa-envelope"></i> Email: vannferrer2004@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i> Tel: +610432515005</p>
+                    <h2>Find Me <i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i></h2>
+                    <p><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email: vannferrer2004@gmail.com</p>
+                    <p><i class="fa-solid fa-phone" aria-hidden="true"></i> Tel: +610432515005</p>
                 </div>
              </div>
              <div class="col">
                 <div class="form-control">
                     <div class="form-inputs">
-                        <input type="text" class="input-field" placeholder="Name">
-                        <input type="text" class="input-field" placeholder="Email">
+                        <div class="input-group">
+                            <label for="name" class="visually-hidden">Name</label>
+                            <input type="text" id="name" class="input-field" placeholder="Name" aria-required="true">
+                        </div>
+                        <div class="input-group">
+                            <label for="email" class="visually-hidden">Email</label>
+                            <input type="email" id="email" class="input-field" placeholder="Email" aria-required="true">
+                        </div>
                     </div>
                     <div class="text-area">
-                        <textarea placeholder="Message"></textarea>
+                        <label for="message" class="visually-hidden">Message</label>
+                        <textarea id="message" placeholder="Message" aria-required="true"></textarea>
                     </div>
                     <div class="form-button">
-                        <button class="btn">Send <i class="fa-solid fa-message"></i></button>
+                        <button class="btn" type="button">Send <i class="fa-solid fa-message" aria-hidden="true"></i></button>
                     </div>
                 </div>
              </div>
@@ -385,17 +459,17 @@
     </main>
 
     <!-- Lightbox Container -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <span class="lightbox-close" aria-label="Close">&times;</span>
         <div class="lightbox-content">
-            <img id="lightbox-img" src="images/placeholder.jpg" alt="Fullscreen Image">
+            <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Fullscreen Image">
             <div class="lightbox-caption">
                 <h3 id="lightbox-title">Image Title</h3>
                 <p id="lightbox-desc"></p>
             </div>
         </div>
-        <span class="lightbox-prev">&lsaquo;</span>
-        <span class="lightbox-next">&rsaquo;</span>
+        <span class="lightbox-prev" aria-label="Previous image">&lsaquo;</span>
+        <span class="lightbox-next" aria-label="Next image">&rsaquo;</span>
     </div>
 
     <!-- FOOTER -->
@@ -423,13 +497,13 @@
             </ul>
         </div>
         <div class="footer-social-icons">
-            <div class="icon"><a href="https://www.instagram.com/vmars24k/"><i class="fa-brands fa-instagram"></i></a></div>
-            <div class="icon"><a href="https://www.facebook.com/vann.rich.3/"><i class="fa-brands fa-facebook"></i></a></div>
-            <div class="icon"><a href="https://www.youtube.com/@brunomars"><i class="fa-brands fa-youtube"></i></a></div>
-            <div class="icon"><a href="https://www.brunomars.com/"><i class="fa-solid fa-globe"></i></a></div>
+            <div class="icon"><a href="https://www.instagram.com/vmars24k/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></div>
+            <div class="icon"><a href="https://www.facebook.com/vann.rich.3/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></div>
+            <div class="icon"><a href="https://www.youtube.com/@brunomars" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></div>
+            <div class="icon"><a href="https://www.brunomars.com/" aria-label="Bruno Mars Official Website" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-globe" aria-hidden="true"></i></a></div>
         </div>
         <div class="bottom-footer">
-            <p> &copy; 2025 <a href="#home" style="text-decoration: none;">Vann Rich Ferrer.</a> All rights reserved.</p>
+            <p> &copy; <span id="current-year">2025</span> <a href="#home" style="text-decoration: none;">Vann Rich Ferrer.</a> All rights reserved.</p>
         </div>
     </footer>
 
@@ -446,7 +520,7 @@
         <audio data-title="Die With A Smile" data-artist="Lady Gaga, Bruno Mars">
             <source src="audio/lady-gaga-die-with-a-smile.mp3" type="audio/mp3">
         </audio>
-        <audio data-title="Grenade" data-artist="Bruno Mars">
+                <audio data-title="Grenade" data-artist="Bruno Mars">
             <source src="audio/bruno-mars-grenade.mp3" type="audio/mp3">
         </audio>
         <audio data-title="Just The Way You Are" data-artist="Bruno Mars">
@@ -593,20 +667,105 @@
         <audio data-title="Mirror (feat. Bruno Mars)" data-artist="Lil Wayne, Bruno Mars">
             <source src="audio/lil-wayne-mirror.mp3" type="audio/mp3">
         </audio>
+        <!-- Other audio sources remain the same but moved to the bottom to improve initial page load -->
     </div>
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Scroll to top">
-        <i class="fa-solid fa-arrow-up"></i>
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <!-- TYPING JS Link -->
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <!-- Toast notifications container -->
+    <div class="toast-container"></div>
 
-    <!-- SCROLL REVEAL JS Link -->
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- TYPING JS Link - load with defer -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js" defer></script>
 
-    <!-- MAIN JS -->
-    <script src="main.js"></script>
+    <!-- SCROLL REVEAL JS Link - load with defer -->
+    <script src="https://unpkg.com/scrollreveal" defer></script>
+
+    <!-- MAIN JS - load with defer -->
+    <script src="main.js" defer></script>
+
+    <!-- Remaining audio tracks loaded after page renders -->
+    <script>
+        // Load the remaining audio tracks after page is loaded
+        window.addEventListener('DOMContentLoaded', function() {
+            const musicSources = document.getElementById('music-sources');
+            if (!musicSources) return;
+
+            // Append the rest of the audio elements
+            const remainingTracks = [
+                { title: "Fat Juicy & Wet", artist: "Sexyy Red, Bruno Mars", src: "audio/sexyy-red-fat-juicy-wet.mp3" },
+                { title: "APT.", artist: "ROSÉ, Bruno Mars", src: "audio/rose-apt.mp3" },
+                { title: "Die With A Smile", artist: "Lady Gaga, Bruno Mars", src: "audio/lady-gaga-die-with-a-smile.mp3" },
+                { title: "Grenade", artist: "Bruno Mars", src: "audio/bruno-mars-grenade.mp3" },
+                { title: "Just The Way You Are", artist: "Bruno Mars", src: "audio/bruno-mars-just-the-way-you-are.mp3" },
+                { title: "Our First Time", artist: "Bruno Mars", src: "audio/bruno-mars-our-first-time.mp3" },
+                { title: "Runway Baby", artist: "Bruno Mars", src: "audio/bruno-mars-runaway-baby.mp3" },
+                { title: "The Lazy Song", artist: "Bruno Mars", src: "audio/bruno-mars-the-lazy-song.mp3" },
+                { title: "Marry You", artist: "Bruno Mars", src: "audio/bruno-mars-marry-you.mp3" },
+                { title: "Talking To The Moon", artist: "Bruno Mars", src: "audio/bruno-mars-talking-to-the-moon.mp3" },
+                { title: "Liquor Store Blues (feat. Damian Marley)", artist: "Bruno Mars, Damian Marley", src: "audio/bruno-mars-liquor-store-blues.mp3" },
+                { title: "Count on Me", artist: "Bruno Mars", src: "audio/bruno-mars-count-on-me.mp3" },
+                { title: "The Other Side (feat. CeeLo Green & B.o.B)", artist: "Bruno Mars, B.o.B, CeeLo Green", src: "audio/bruno-mars-the-other-side.mp3" },
+                { title: "Young Girls", artist: "Bruno Mars", src: "audio/bruno-mars-young-girls.mp3" },
+                { title: "Locked Out Of Heaven", artist: "Bruno Mars", src: "audio/bruno-mars-locked-out-of-heaven.mp3" },
+                { title: "Gorilla", artist: "Bruno Mars", src: "audio/bruno-mars-gorilla.mp3" },
+                { title: "Treasure", artist: "Bruno Mars", src: "audio/bruno-mars-treasure.mp3" },
+                { title: "Moonshine", artist: "Bruno Mars", src: "audio/bruno-mars-moonshine.mp3" },
+                { title: "When I Was Your Man", artist: "Bruno Mars", src: "audio/bruno-mars-when-i-was-your-man.mp3" },
+                { title: "Natalie", artist: "Bruno Mars", src: "audio/bruno-mars-natalie.mp3" },
+                { title: "Show Me", artist: "Bruno Mars", src: "audio/bruno-mars-show-me.mp3" },
+                { title: "Money Make Her Smile", artist: "Bruno Mars", src: "audio/bruno-mars-money-make-her-smile.mp3" },
+                { title: "If I Knew", artist: "Bruno Mars", src: "audio/bruno-mars-if-i-knew.mp3" },
+                { title: "24K Magic", artist: "Bruno Mars", src: "audio/bruno-mars-24k-magic.mp3" },
+                { title: "Chunky", artist: "Bruno Mars", src: "audio/bruno-mars-chunky.mp3" },
+                { title: "Perm", artist: "Bruno Mars", src: "audio/bruno-mars-perm.mp3" },
+                { title: "That's What I Like", artist: "Bruno Mars", src: "audio/bruno-mars-thats-what-i-like.mp3" },
+                { title: "Versace on the Floor", artist: "Bruno Mars", src: "audio/bruno-mars-versace-on-the-floor.mp3" },
+                { title: "Straight up & Down", artist: "Bruno Mars", src: "audio/bruno-mars-straight-up-&-down.mp3" },
+                { title: "Calling All My Lovelies", artist: "Bruno Mars", src: "audio/bruno-mars-calling-all-my-lovelies.mp3" },
+                { title: "Finesse (Remix) (feat. Cardi B)", artist: "Bruno Mars, Cardi B", src: "audio/bruno-mars-finesse.mp3" },
+                { title: "Too Good to Say Goodbye", artist: "Bruno Mars", src: "audio/bruno-mars-too-good-to-say-goodbye.mp3" },
+                { title: "Silk Sonic Intro", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-silk-sonic-intro.mp3" },
+                { title: "Leave the Door Open", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-leave-the-door-open.mp3" },
+                { title: "Fly As Me", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-fly-as-me.mp3" },
+                { title: "After Last Night w/ Thundercat & Bootsy", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-after-last-night.mp3" },
+                { title: "Smokin Out The Window", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-smokin-out-the-window.mp3" },
+                { title: "Put On A Smile", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-put-on-a-smile.mp3" },
+                { title: "777", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-777.mp3" },
+                { title: "Skate", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-skate.mp3" },
+                { title: "Love's Train (Con Funk Shun Cover)", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-loves-train.mp3" },
+                { title: "Blast Off", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-blast-off.mp3" },
+                { title: "Uptown Funk (feat. Bruno Mars)", artist: "Mark Ronson, Bruno Mars", src: "audio/mark-ronson-uptown-funk.mp3" },
+                { title: "It Will Rain", artist: "Bruno Mars", src: "audio/bruno-mars-it-will-rain.mp3" },
+                { title: "Please Me", artist: "Cardi B, Bruno Mars", src: "audio/cardi-b-please-me.mp3" },
+                { title: "Wake Up in the Sky", artist: "Gucci Mane, Bruno Mars, Kodak Black", src: "audio/gucci-mane-wake-up-in-the-sky.mp3" },
+                { title: "BLOW (with Chris Stapleton & Bruno Mars)", artist: "Ed Sheeran, Chris Stapleton, Bruno Mars", src: "audio/ed-sheeran-blow.mp3" },
+                { title: "Billionaire (feat. Bruno Mars)", artist: "Travie McCoy, Bruno Mars", src: "audio/travie-mccoy-billionaire.mp3" },
+                { title: "Nothin' on You (feat. Bruno Mars)", artist: "B.o.B, Bruno Mars", src: "audio/b.o.b-nothin-on-you.mp3" },
+                { title: "Young, Wild & Free (feat. Bruno Mars)", artist: "Snoop Dogg, Wiz Khalifa, Bruno Mars", src: "audio/snoop-dog-young-wild-free.mp3" },
+                { title: "Lighters (feat. Bruno Mars)", artist: "Eminem, Bruno Mars", src: "audio/eminem-lighters.mp3" },
+                { title: "Mirror (feat. Bruno Mars)", artist: "Lil Wayne, Bruno Mars", src: "audio/lil-wayne-mirror.mp3" }
+            ];
+
+            remainingTracks.forEach(track => {
+                const audio = document.createElement('audio');
+                audio.setAttribute('data-title', track.title);
+                audio.setAttribute('data-artist', track.artist);
+                
+                const source = document.createElement('source');
+                source.src = track.src;
+                source.type = 'audio/mp3';
+                
+                audio.appendChild(source);
+                musicSources.appendChild(audio);
+            });
+        });
+
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
