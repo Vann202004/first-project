@@ -248,11 +248,13 @@ document.addEventListener('DOMContentLoaded', function() {
     lightboxTitle.textContent = title;
     lightboxDesc.textContent = desc;
     lightbox.style.display = 'block';
+    lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
   }
   
   function closeLightbox() {
     lightbox.style.display = 'none';
+    lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = ''; // Restore scrolling
   }
   
@@ -341,11 +343,11 @@ function initBackgroundMusic() {
         return;
     }
 
-    // Get all audio sources - modified to directly get the sources
-    let musicSources = Array.from(document.querySelectorAll('#music-sources source'));
+    // Get all audio elements from music-sources
+    let tracks = Array.from(document.querySelectorAll('#music-sources audio'));
     
     // Check if we have music sources
-    if (musicSources.length === 0) {
+    if (tracks.length === 0) {
         console.warn("No music sources found in #music-sources");
         return;
     }
@@ -363,7 +365,7 @@ function initBackgroundMusic() {
     progressCircle.style.strokeDashoffset = circumference;
 
     // Shuffle the music array when page loads
-    shuffleArray(musicSources);
+    shuffleArray(tracks);
 
     // Shuffle array function
     function shuffleArray(array) {
@@ -384,6 +386,13 @@ function initBackgroundMusic() {
         });
         
         audio.addEventListener('timeupdate', updateProgress);
+        
+        // Handle errors
+        audio.addEventListener('error', function(e) {
+            console.error("Audio error:", e);
+            showToast("Error playing track. Skipping to next.", "error");
+            nextTrack();
+        });
     }
 
     // Update progress ring
@@ -400,7 +409,7 @@ function initBackgroundMusic() {
 
     // Function to load and play a track
     function loadTrack(index) {
-        if (index >= musicSources.length) {
+        if (index >= tracks.length) {
             console.error("Track index out of bounds:", index);
             return;
         }
@@ -411,24 +420,30 @@ function initBackgroundMusic() {
             pauseTrack();
         }
         
-        const sourceElement = musicSources[index];
+        const track = tracks[index];
         
-        // Check if source is valid
-        if (!sourceElement || !sourceElement.src) {
-            console.error("Invalid source element at index:", index);
+        // Check if track is valid
+        if (!track) {
+            console.error("Invalid track at index:", index);
             return;
         }
         
-        // Get track metadata - now getting from the parent audio element
-        const parentAudio = sourceElement.parentElement;
-        const title = parentAudio ? (parentAudio.getAttribute('data-title') || 'Unknown Title') : 'Unknown Title';
-        const artist = parentAudio ? (parentAudio.getAttribute('data-artist') || 'Unknown Artist') : 'Unknown Artist';
+        // Get track metadata from data attributes
+        const title = track.getAttribute('data-title') || 'Unknown Title';
+        const artist = track.getAttribute('data-artist') || 'Unknown Artist';
+        
+        // Get the source element
+        const source = track.querySelector('source');
+        if (!source || !source.src) {
+            console.error("Invalid source for track:", title);
+            return;
+        }
         
         // Set the source for the main audio element
-        audio.src = sourceElement.src;
+        audio.src = source.src;
         
         // Log the source to help with debugging
-        console.log("Loading track:", title, "by", artist, "from", sourceElement.src);
+        console.log("Loading track:", title, "by", artist, "from", source.src);
         
         audio.load();
         
@@ -449,6 +464,7 @@ function initBackgroundMusic() {
     function playTrack() {
         if (!audio.src) {
             console.error("No audio source set");
+            showToast("No audio track loaded", "error");
             return;
         }
         
@@ -468,13 +484,15 @@ function initBackgroundMusic() {
         };
         
         // Update UI immediately to provide feedback
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause" aria-hidden="true"></i>';
+        playPauseBtn.setAttribute('aria-label', 'Pause music');
         isPlaying = true;
         
         audio.play()
             .then(() => {
                 if (playAttemptInProgress) { // Only update UI if we haven't cancelled
-                    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause" aria-hidden="true"></i>';
+                    playPauseBtn.setAttribute('aria-label', 'Pause music');
                     isPlaying = true;
                 }
             })
@@ -482,8 +500,11 @@ function initBackgroundMusic() {
                 console.error("Error playing audio:", error, "Source:", audio.src);
                 // Only update UI if this play attempt is still relevant
                 if (playAttemptInProgress) {
-                    playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                    playPauseBtn.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+                    playPauseBtn.setAttribute('aria-label', 'Play music');
                     isPlaying = false;
+                    
+                    showToast("Error playing track. Trying next one.", "error");
                     
                     // Try next track if current one fails
                     nextTrack();
@@ -508,7 +529,8 @@ function initBackgroundMusic() {
         
         if (audio) {
             audio.pause();
-            playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+            playPauseBtn.setAttribute('aria-label', 'Play music');
             isPlaying = false;
         }
     }
@@ -524,14 +546,20 @@ function initBackgroundMusic() {
 
     // Go to previous track
     function prevTrack() {
-        current = (current - 1 + musicSources.length) % musicSources.length;
+        current = (current - 1 + tracks.length) % tracks.length;
         loadTrack(current);
+        if (isPlaying) {
+            playTrack();
+        }
     }
 
     // Go to next track
     function nextTrack() {
-        current = (current + 1) % musicSources.length;
+        current = (current + 1) % tracks.length;
         loadTrack(current);
+        if (isPlaying) {
+            playTrack();
+        }
     }
 
     // Update now playing text with title and artist
@@ -539,6 +567,44 @@ function initBackgroundMusic() {
         if (nowPlayingText) nowPlayingText.textContent = `${title} - ${artist}`;
         if (currentTrackName) currentTrackName.textContent = title;
         if (trackArtistElement) trackArtistElement.textContent = artist;
+    }
+
+    // Show toast notification
+    function showToast(message, type) {
+        // Create toast container if it doesn't exist
+        let toastContainer = document.querySelector('.toast-container');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.className = 'toast-container';
+            document.body.appendChild(toastContainer);
+        }
+        
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <div class="toast-content">
+            <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" aria-hidden="true"></i>
+            <div class="toast-message">${message}</div>
+          </div>
+          <i class="fa-solid fa-times toast-close" aria-hidden="true"></i>
+        `;
+        
+        // Add toast to container
+        toastContainer.appendChild(toast);
+        
+        // Add close button functionality
+        const closeBtn = toast.querySelector('.toast-close');
+        closeBtn.addEventListener('click', () => {
+            toast.classList.add('toast-hiding');
+            setTimeout(() => toast.remove(), 300);
+        });
+        
+        // Auto remove toast after 5 seconds
+        setTimeout(() => {
+            toast.classList.add('toast-hiding');
+            setTimeout(() => toast.remove(), 300);
+        }, 5000);
     }
 
     // Event listeners
@@ -568,20 +634,26 @@ if (speechBubble) {
         setTimeout(function() {
             speechBubble.remove();
         }, 1000);
-    }, 34000);
+    }, 10000); // Changed to 10 seconds instead of 34 seconds for better UX
 }
 
 // Call scrollActive once on page load to set initial active state
 document.addEventListener('DOMContentLoaded', function() {
   scrollActive();
+  
+  // Set current year in footer
+  const yearElement = document.getElementById('current-year');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 });
 
 /* ----- CONTACT FORM FUNCTIONALITY ----- */
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('.form-control');
-  const nameInput = form.querySelector('input[placeholder="Name"]');
-  const emailInput = form.querySelector('input[placeholder="Email"]');
-  const messageTextarea = form.querySelector('textarea');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageTextarea = document.getElementById('message');
   const submitButton = form.querySelector('.form-button .btn');
 
   // Add form submission event
@@ -592,7 +664,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (validateForm()) {
       // Show sending feedback
       const originalButtonText = submitButton.innerHTML;
-      submitButton.innerHTML = 'Sending <i class="fa-solid fa-spinner fa-spin"></i>';
+      submitButton.innerHTML = 'Sending <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
       submitButton.disabled = true;
       
       // Simulate form submission (since we don't have a backend)
@@ -603,7 +675,7 @@ document.addEventListener('DOMContentLoaded', function() {
         messageTextarea.value = '';
         
         // Show success message
-        submitButton.innerHTML = 'Sent Successfully <i class="fa-solid fa-check"></i>';
+        submitButton.innerHTML = 'Sent Successfully <i class="fa-solid fa-check" aria-hidden="true"></i>';
         submitButton.style.backgroundColor = '#4CAF50';
         
         // Reset button after 3 seconds
@@ -627,13 +699,13 @@ document.addEventListener('DOMContentLoaded', function() {
     removeErrorStyles();
     
     // Validate Name
-    if (nameInput.value.trim() === '') {
+    if (!nameInput || nameInput.value.trim() === '') {
       setErrorFor(nameInput, 'Name cannot be empty');
       isValid = false;
     }
     
     // Validate Email
-    if (emailInput.value.trim() === '') {
+    if (!emailInput || emailInput.value.trim() === '') {
       setErrorFor(emailInput, 'Email cannot be empty');
       isValid = false;
     } else if (!isValidEmail(emailInput.value.trim())) {
@@ -642,7 +714,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Validate Message
-    if (messageTextarea.value.trim() === '') {
+    if (!messageTextarea || messageTextarea.value.trim() === '') {
       setErrorFor(messageTextarea, 'Message cannot be empty');
       isValid = false;
     }
@@ -652,6 +724,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Set error message and style
   function setErrorFor(input, message) {
+    if (!input) return;
+    
     const formControl = input.parentElement;
     
     // Create error message element if it doesn't exist
@@ -696,10 +770,10 @@ document.addEventListener('DOMContentLoaded', function() {
     toast.className = `toast ${type}`;
     toast.innerHTML = `
       <div class="toast-content">
-        <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+        <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" aria-hidden="true"></i>
         <div class="toast-message">${message}</div>
       </div>
-      <i class="fa-solid fa-times toast-close"></i>
+      <i class="fa-solid fa-times toast-close" aria-hidden="true"></i>
     `;
     
     // Add toast to container
@@ -719,3 +793,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 5000);
   }
 });
+
+// Progressive loading of video elements
+document.addEventListener('DOMContentLoaded', function() {
+    const videoElement = document.querySelector('.background-video');
+    
+    if (videoElement) {
+        // Only start loading video after page is fully loaded
+        window.addEventListener('load', function() {
+            // Small delay to prioritize other critical resources
+            setTimeout(() => {
+                videoElement.load();
+            }, 500);
+        });
+    }
+    
+    // Check for WebP support and apply appropriate images
+    checkWebPSupport();
+});
+
+// Function to check WebP support
+function checkWebPSupport() {
+    // Create WebP test image
+    const webP = new Image();
+    webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+    
+    // Check if WebP is supported
+    webP.onload = webP.onerror = function() {
+        const isWebPSupported = (webP.height === 2);
+        
+        // Set a body class based on WebP support
+        document.body.classList.add(isWebPSupported ? 'webp' : 'no-webp');
+        
+        // For browsers that don't support WebP, swap to JPG/PNG
+        if (!isWebPSupported) {
+            const webpImages = document.querySelectorAll('img[src$=".webp"]');
+            webpImages.forEach(img => {
+                // Replace .webp with .jpg or original format
+                img.src = img.src.replace('.webp', '.jpg');
+                
+                // Also replace in srcset if it exists
+                if (img.srcset) {
+                    img.srcset = img.srcset.replace(/\.webp/g, '.jpg');
+                }
+            });
+        }
+    };
+}
