@@ -280,6 +280,7 @@ html{
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
+/* Fix for <h1> in preloader - explicit font size */
 #preloader h1 {
   position: absolute;
   font-family: 'Poppins', sans-serif;
@@ -290,6 +291,34 @@ html{
   top: 58%;
   transform: translateX(-50%);
   color: #333333; /* Dark text for contrast */
+}
+
+/* Fix for all <h1> tags within sectioning elements */
+section h1, article h1, aside h1, nav h1 {
+  font-size: 2rem; /* Explicitly setting the font size */
+}
+
+/* Specific adjustments for different scenarios */
+.video-content h1 {
+  font-size: 4rem; /* Keep your existing size */
+}
+
+@media only screen and (max-width: 1024px) {
+  .video-content h1 {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .video-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .video-content h1 {
+    font-size: 1.8rem;
+  }
 }
 
 .loader-body {
