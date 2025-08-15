@@ -48,6 +48,9 @@ body.dark-mode {
     --box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.1);
 }
 
+/* Rest of the CSS file is the same as your original */
+/* ... */
+
 /* ----- BASE ----- */
 *{
     margin: 0;
