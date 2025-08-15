@@ -40,9 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* ----- ADD SHADOW ON NAVIGATION BAR WHILE SCROLLING & MAKE IT STICKY ----- */
-window.onscroll = function() {handleNavigation();};
-
-function handleNavigation() {
+const handleNavigation = function() {
   const navHeader = document.getElementById("header");
   const navSpacer = document.getElementById("nav-spacer");
   const scrollPosition = window.scrollY;
@@ -79,7 +77,9 @@ function handleNavigation() {
   
   // Call the scrollActive function to update active links
   scrollActive();
-}
+};
+
+window.onscroll = handleNavigation;
 
 /* ----- TYPING EFFECT ----- */
 document.addEventListener('DOMContentLoaded', function() {
@@ -314,7 +314,7 @@ function setupProgressRing() {
     circle.style.strokeDashoffset = circumference; // Start with full offset (no progress)
 }
 
-// Background Music Functionality with optimized loading
+// Background Music Functionality
 function initBackgroundMusic() {
     const audio = document.getElementById('audio');
     const playPauseBtn = document.getElementById('playPauseBtn');
@@ -792,7 +792,9 @@ function showToast(message, type) {
   const closeBtn = toast.querySelector('.toast-close');
   closeBtn.addEventListener('click', () => {
     toast.classList.add('toast-hiding');
-    setTimeout(() => toast.remove(), 300);
+    setTimeout(() => {
+      if (toast.parentNode) toast.remove();
+    }, 300);
   });
   
   // Auto remove toast after 5 seconds
@@ -805,3 +807,53 @@ function showToast(message, type) {
     }
   }, 5000);
 }
+
+// Lazy load remaining tracks
+const loadRemainingTracks = function() {
+    const musicSources = document.getElementById('music-sources');
+    if (!musicSources) return;
+    
+    // Load tracks in batches to avoid blocking
+    function loadTracksInBatches(tracks, batchSize, delay) {
+        let currentIndex = 0;
+        
+        function loadNextBatch() {
+            if (currentIndex >= tracks.length) return;
+            
+            const endIndex = Math.min(currentIndex + batchSize, tracks.length);
+            const batch = tracks.slice(currentIndex, endIndex);
+            
+            batch.forEach(track => {
+                const audio = document.createElement('audio');
+                audio.setAttribute('data-title', track.title);
+                audio.setAttribute('data-artist', track.artist);
+                audio.setAttribute('preload', 'none');
+                
+                const source = document.createElement('source');
+                source.src = track.src;
+                source.type = 'audio/mp3';
+                
+                audio.appendChild(source);
+                musicSources.appendChild(audio);
+            });
+            
+            currentIndex = endIndex;
+            
+            if (currentIndex < tracks.length) {
+                setTimeout(loadNextBatch, delay);
+            }
+        }
+        
+        loadNextBatch();
+    }
+    
+    // Only load a subset of tracks for optimization
+    const remainingTracks = [
+        { title: "Grenade", artist: "Bruno Mars", src: "audio/bruno-mars-grenade.mp3" },
+        { title: "Just The Way You Are", artist: "Bruno Mars", src: "audio/bruno-mars-just-the-way-you-are.mp3" },
+        { title: "That's What I Like", artist: "Bruno Mars", src: "audio/bruno-mars-thats-what-i-like.mp3" }
+    ];
+    
+    // Load tracks in batches of 5 with 200ms delay between batches
+    loadTracksInBatches(remainingTracks, 5, 200);
+};
