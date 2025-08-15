@@ -314,7 +314,7 @@ function setupProgressRing() {
     circle.style.strokeDashoffset = circumference; // Start with full offset (no progress)
 }
 
-// Background Music Functionality
+// Background Music Functionality with optimized loading
 function initBackgroundMusic() {
     const audio = document.getElementById('audio');
     const playPauseBtn = document.getElementById('playPauseBtn');
