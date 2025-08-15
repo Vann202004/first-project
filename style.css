@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 /* ----- VARIABLES ----- */
 :root{
@@ -64,13 +64,6 @@ html, body {
 /* ----- SMOOTH SCROLL ----- */
 html{
     scroll-behavior: smooth;
-}
-
-/* Respect user's preference for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
 }
 
 /* ----- CHANGE THE SCROLL BAR DESIGN ----- */
@@ -287,7 +280,6 @@ html{
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-/* Fix for <h1> in preloader - explicit font size */
 #preloader h1 {
   position: absolute;
   font-family: 'Poppins', sans-serif;
@@ -298,39 +290,6 @@ html{
   top: 58%;
   transform: translateX(-50%);
   color: #333333; /* Dark text for contrast */
-}
-
-/* Dark mode adjustments for preloader */
-body.dark-mode #preloader {
-  background-color: #242424;
-}
-
-body.dark-mode #preloader h1 {
-  color: #FFFFFF;
-}
-
-/* Fix for all <h1> tags within sectioning elements */
-section h1, article h1, aside h1, nav h1 {
-  font-size: 2rem; /* Explicitly setting the font size */
-}
-
-/* Specific adjustments for different scenarios */
-@media only screen and (max-width: 1024px) {
-  .video-content h1 {
-    font-size: 3rem;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .video-content h1 {
-    font-size: 2.5rem;
-  }
-}
-
-@media only screen and (max-width: 540px) {
-  .video-content h1 {
-    font-size: 1.8rem;
-  }
 }
 
 .loader-body {
@@ -468,7 +427,15 @@ section h1, article h1, aside h1, nav h1 {
   animation-delay: -3s;
 }
 
-/* Dark mode adjustments for preloader elements */
+/* Dark mode adjustments for preloader */
+body.dark-mode #preloader {
+  background-color: #242424;
+}
+
+body.dark-mode #preloader h1 {
+  color: #FFFFFF;
+}
+
 body.dark-mode .loader-body > span,
 body.dark-mode .loader-body > span > span {
   background-color: #FFFFFF;
@@ -512,6 +479,9 @@ body.dark-mode .longfazers span {
     text-decoration: none;
     color: #333333;
 }
+.btn>i{
+    margin-left: 10px;
+}
 .btn:hover{
     background: var(--second-color); /* Philippine Red */
     color: var(--color-white);
@@ -542,22 +512,9 @@ body.dark-mode .longfazers span {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(206, 17, 38, 0.7); /* Enhanced glow on hover */
 }
 
-/* ----- SVG ICON STYLING ----- */
-.svg-icon {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    fill: currentColor;
-    vertical-align: -0.125em;
-}
-
-.nav-menu-btn button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    color: inherit;
-    font-size: inherit;
+/* ----- GLOBAL ICONS DESIGN ----- */
+i{
+    font-size: 16px;
 }
 
 /* ------- BASE -------- */
@@ -737,7 +694,7 @@ body{
     transform: rotate(-90deg); /* Start at top */
 }
 
-/* Music control button */
+/* Remove old music control button */
 .music-control-btn {
     position: absolute;
     bottom: 30px;
@@ -762,7 +719,7 @@ body{
     color: white;
 }
 
-.music-control-btn .svg-icon {
+.music-control-btn i {
     font-size: 20px;
 }
 
@@ -826,7 +783,7 @@ body.dark-mode .moon-sun {
     background: #333333;
 }
 
-.moon-sun .svg-icon {
+.moon-sun i {
     font-size: 20px;
     transition: 0.3s;
 }
@@ -870,7 +827,7 @@ body.dark-mode #sun {
 .nav-menu-btn{
     display: none;
 }
-.nav-menu-btn .svg-icon{
+.nav-menu-btn i{
     font-size: 28px;
     cursor: pointer;
 }
@@ -1058,7 +1015,7 @@ body.dark-mode .sticky {
    border-radius: 30px;
    box-shadow: var(--box-shadow);
 }
-.scroll-btn .svg-icon{
+.scroll-btn i{
     font-size: 20px;
 }
 
@@ -1069,7 +1026,7 @@ body.dark-mode .sticky {
         height: 45px;
         font-size: 14px;
     }
-    .scroll-btn .svg-icon {
+    .scroll-btn i {
         font-size: 18px;
     }
 }
@@ -1080,7 +1037,7 @@ body.dark-mode .sticky {
         height: 40px;
         font-size: 13px;
     }
-    .scroll-btn .svg-icon {
+    .scroll-btn i {
         font-size: 16px;
     }
 }
@@ -1093,7 +1050,7 @@ body.dark-mode .sticky {
         margin-bottom: -15%;
         gap: 3px;
     }
-    .scroll-btn .svg-icon {
+    .scroll-btn i {
         font-size: 14px;
     }
 }
@@ -1104,7 +1061,7 @@ body.dark-mode .sticky {
         height: 32px;
         font-size: 11px;
     }
-    .scroll-btn .svg-icon {
+    .scroll-btn i {
         font-size: 12px;
     }
     .scroll-icon-box {
@@ -1221,7 +1178,7 @@ h3{
     box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
     overflow: hidden;
 }
-.project-box>.svg-icon{
+.project-box>i{
     font-size: 50px;
     color: var(--first-color); /* Royal Azure */
     margin-bottom: 25px;
@@ -1244,7 +1201,7 @@ h3{
 .contact-info:hover.contact-info::after{
     bottom: 0;
 }
-.project-box:hover.project-box .svg-icon,
+.project-box:hover.project-box i,
 .project-box:hover.project-box>h3,
 .project-box:hover.project-box>label{
     color: var(--color-white);
@@ -1426,7 +1383,7 @@ h3{
     color: #FFFFFF;
     margin-block: 5px;
 }
-.contact-info p>.svg-icon{
+.contact-info p>i{
     font-size: 18px;
 }
 .contact-info::after{
@@ -1434,7 +1391,7 @@ h3{
 }
 .contact-info:hover.contact-info h2,
 .contact-info:hover.contact-info p,
-.contact-info:hover.contact-info .svg-icon{
+.contact-info:hover.contact-info i{
     color: #333333; /* Dark text for contrast on yellow */
     z-index: 2;
 }
@@ -1492,7 +1449,7 @@ textarea:focus {
 .form-button>.btn:hover{
     background: var(--second-color); /* Philippine Red */
 }
-.form-button .svg-icon{
+.form-button i{
     font-size: 18px;
     rotate: -45deg;
 }
@@ -1583,14 +1540,8 @@ footer{
     box-shadow: 0 6px 15px rgba(206, 17, 38, 0.5);
 }
 
-.scroll-to-top-btn .svg-icon {
+.scroll-to-top-btn i {
     font-size: 20px;
-}
-
-/* Focus visible for accessibility */
-:focus-visible {
-    outline: 2px solid var(--first-color);
-    outline-offset: 2px;
 }
 
 /* Media query for mobile devices */
@@ -1602,7 +1553,7 @@ footer{
         right: 20px;
     }
     
-    .scroll-to-top-btn .svg-icon {
+    .scroll-to-top-btn i {
         font-size: 16px;
     }
 }
@@ -1723,7 +1674,7 @@ footer{
         right: 10px;
     }
     
-    .music-control-btn .svg-icon {
+    .music-control-btn i {
         font-size: 16px;
     }
     
@@ -1817,7 +1768,7 @@ footer{
         right: 5px;
     }
     
-    .music-control-btn .svg-icon {
+    .music-control-btn i {
         font-size: 14px;
     }
     
@@ -1879,7 +1830,7 @@ footer{
         height: 30px;
     }
     
-    .music-control-btn .svg-icon {
+    .music-control-btn i {
         font-size: 12px;
     }
 }
@@ -2107,6 +2058,44 @@ body.dark-mode .speech-bubble p::after {
     }
 }
 
+    .speech-bubble p::after {
+        font-size: 45px;
+        width: 45px;
+        height: 9px;
+        bottom: -25px;
+        left: 65px;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+    
+    @keyframes float2 {
+        0% {
+            line-height: 50px;
+            transform: translateY(0px);
+        }
+        55% {
+            transform: translateY(-15px);
+        }
+        60% {
+            line-height: 8px;
+        }
+        100% {
+            line-height: 50px;
+            transform: translateY(0px);
+        }
+    }
+
+
 @media only screen and (max-width: 540px) {
     .speech-bubble {
         top: -36px;
@@ -2231,15 +2220,15 @@ body.dark-mode .speech-bubble p::after {
   gap: 12px;
 }
 
-.toast-content .svg-icon {
+.toast-content i {
   font-size: 20px;
 }
 
-.toast.success .svg-icon {
+.toast.success i {
   color: #4CAF50;
 }
 
-.toast.error .svg-icon {
+.toast.error i {
   color: var(--second-color);
 }
 
