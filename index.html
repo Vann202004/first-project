@@ -12,18 +12,12 @@
     
     <!-- Critical CSS inline -->
     <style>
-        :root{--body-color:#FFFFFF;--color-white:#FFFFFF;--text-color-second:#333333;--text-color-third:#CE1126;--first-color:#0038A8;--first-color-hover:#002A80;--second-color:#CE1126;--third-color:#FCD116;--first-shadow-color:rgba(0,0,0,0.1);--bg-card:#FFFFFF;--bg-form:#FFFFFF;--input-border:#AAA;--footer-bg:#FFFFFF;--scroll-bar-color:#F1F1F1;--scroll-thumb-color:#0038A8;--scroll-thumb-hover:#002A80;--modal-bg:rgba(0,0,0,0.4);--icons-bg:#F4F4F4;--box-shadow:0px 2px 5px 0px rgba(0,0,0,0.25)}body.dark-mode{--body-color:#1A1A1A;--color-white:#1E1E1E;--text-color-second:#FFFFFF;--text-color-third:#FF6B6B;--first-shadow-color:rgba(0,0,0,0.3);--bg-card:#242424;--bg-form:#242424;--input-border:#555;--footer-bg:#1A1A1A;--scroll-bar-color:#333333;--scroll-thumb-color:#CE1126;--scroll-thumb-hover:#FF6B6B;--modal-bg:rgba(0,0,0,0.7);--icons-bg:#2A2A2A;--box-shadow:0px 2px 5px 0px rgba(255,255,255,0.1)}*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}html,body{overflow-x:hidden;width:100%}html{scroll-behavior:smooth}::-webkit-scrollbar{width:10px;border-radius:25px}::-webkit-scrollbar-track{background:var(--scroll-bar-color)}::-webkit-scrollbar-thumb{background:var(--scroll-thumb-color);border-radius:30px}::-webkit-scrollbar-thumb:hover{background:var(--scroll-thumb-hover)}.skip-link{position:absolute;top:-40px;left:0;background:#0038A8;color:white;padding:8px;z-index:10000;transition:top 0.3s}.skip-link:focus{top:0}#preloader{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#FCD116;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}body{margin:0;padding:0;overflow:hidden;font-family:sans-serif;background:var(--body-color);color:var(--text-color-second);transition:background-color 0.3s,color 0.3s}nav{margin:0px;display:flex;justify-content:space-between;width:100%;height:90px;line-height:90px;background:var(--body-color);padding-inline:9vw;transition:.3s;z-index:100}.nav-logo{position:relative}.nav-name{font-size:30px;font-weight:600;color:var(--text-color-second)}.nav-logo span{position:absolute;top:-1.1px;right:-30px;font-size:1.9em;color:var(--third-color)}i{font-size:16px}
+        :root{--body-color:#FFFFFF;--color-white:#FFFFFF;--text-color-second:#333333;--text-color-third:#CE1126;--first-color:#0038A8;--first-color-hover:#002A80;--second-color:#CE1126;--third-color:#FCD116;--first-shadow-color:rgba(0,0,0,0.1);--bg-card:#FFFFFF;--bg-form:#FFFFFF;--input-border:#AAA;--footer-bg:#FFFFFF;--scroll-bar-color:#F1F1F1;--scroll-thumb-color:#0038A8;--scroll-thumb-hover:#002A80;--modal-bg:rgba(0,0,0,0.4);--icons-bg:#F4F4F4;--box-shadow:0px 2px 5px 0px rgba(0,0,0,0.25)}body.dark-mode{--body-color:#1A1A1A;--color-white:#1E1E1E;--text-color-second:#FFFFFF;--text-color-third:#FF6B6B;--first-shadow-color:rgba(0,0,0,0.3);--bg-card:#242424;--bg-form:#242424;--input-border:#555;--footer-bg:#1A1A1A;--scroll-bar-color:#333333;--scroll-thumb-color:#CE1126;--scroll-thumb-hover:#FF6B6B;--modal-bg:rgba(0,0,0,0.7);--icons-bg:#2A2A2A;--box-shadow:0px 2px 5px 0px rgba(255,255,255,0.1)}*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}html,body{overflow-x:hidden;width:100%}html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}::-webkit-scrollbar{width:10px;border-radius:25px}::-webkit-scrollbar-track{background:var(--scroll-bar-color)}::-webkit-scrollbar-thumb{background:var(--scroll-thumb-color);border-radius:30px}::-webkit-scrollbar-thumb:hover{background:var(--scroll-thumb-hover)}.skip-link{position:absolute;top:-40px;left:0;background:#0038A8;color:white;padding:8px;z-index:10000;transition:top 0.3s}.skip-link:focus{top:0}#preloader{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#FCD116;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}body{margin:0;padding:0;overflow:hidden;font-family:sans-serif;background:var(--body-color);color:var(--text-color-second);transition:background-color 0.3s,color 0.3s}nav{margin:0px;display:flex;justify-content:space-between;width:100%;height:90px;line-height:90px;background:var(--body-color);padding-inline:9vw;transition:.3s;z-index:100}.nav-logo{position:relative}.nav-name{font-size:30px;font-weight:600;color:var(--text-color-second)}.nav-logo span{position:absolute;top:-1.1px;right:-30px;font-size:1.9em;color:var(--third-color)}.svg-icon{display:inline-block;width:1em;height:1em;fill:currentColor;stroke:none;vertical-align:-0.125em}.btn .svg-icon{margin-left:10px}
     </style>
 
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
-    
-    <!-- SVG icons inline -->
-    <style>
-        .svg-icon {display:inline-block;width:1em;height:1em;fill:currentColor;stroke:none}
-        .btn .svg-icon {margin-left:10px;vertical-align:middle}
-    </style>
     
     <!-- CSS (with modern loading pattern) -->
     <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -529,152 +523,17 @@
 
     </div>
 
-    <!-- Background Music -->
+    <!-- Background Music - Optimized to load asynchronously -->
     <div id="music-sources" style="display: none;">
         <!-- First few tracks loaded directly -->
-        <audio data-title="Fat Juicy & Wet" data-artist="Sexyy Red, Bruno Mars">
+        <audio data-title="Fat Juicy & Wet" data-artist="Sexyy Red, Bruno Mars" preload="none">
             <source src="audio/sexyy-red-fat-juicy-wet.mp3" type="audio/mp3">
         </audio>
-        <audio data-title="APT." data-artist="ROSÉ, Bruno Mars">
+        <audio data-title="APT." data-artist="ROSÉ, Bruno Mars" preload="none">
             <source src="audio/rose-apt.mp3" type="audio/mp3">
         </audio>
-        <audio data-title="Die With A Smile" data-artist="Lady Gaga, Bruno Mars">
+        <audio data-title="Die With A Smile" data-artist="Lady Gaga, Bruno Mars" preload="none">
             <source src="audio/lady-gaga-die-with-a-smile.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Grenade" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-grenade.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Just The Way You Are" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-just-the-way-you-are.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Our First Time" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-our-first-time.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Runway Baby" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-runaway-baby.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="The Lazy Song" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-the-lazy-song.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Marry You" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-marry-you.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Talking To The Moon" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-talking-to-the-moon.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Liquor Store Blues (feat. Damian Marley)" data-artist="Bruno Mars, Damian Marley">
-            <source src="audio/bruno-mars-liquor-store-blues.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Count on Me" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-count-on-me.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="The Other Side (feat. CeeLo Green & B.o.B)" data-artist="Bruno Mars, B.o.B, CeeLo Green">
-            <source src="audio/bruno-mars-the-other-side.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Young Girls" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-young-girls.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Locked Out Of Heaven" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-locked-out-of-heaven.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Gorilla" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-gorilla.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Treasure" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-treasure.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Moonshine" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-moonshine.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="When I Was Your Man" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-when-i-was-your-man.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Natalie" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-natalie.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Show Me" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-show-me.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Money Make Her Smile" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-money-make-her-smile.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="If I Knew" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-if-i-knew.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="24K Magic" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-24k-magic.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Chunky" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-chunky.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Perm" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-perm.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="That's What I Like" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-thats-what-i-like.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Versace on the Floor" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-versace-on-the-floor.mp3" type="audio/mp3">
-        </audio>
-            <audio data-title="Straight up & Down" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-straight-up-&-down.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Calling All My Lovelies" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-calling-all-my-lovelies.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Finesse (Remix) (feat. Cardi B)" data-artist="Bruno Mars, Cardi B">
-            <source src="audio/bruno-mars-finesse.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Too Good to Say Goodbye" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-too-good-to-say-goodbye.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Leave the Door Open" data-artist="Bruno Mars, Anderson.Paak, Silk Sonic">
-            <source src="audio/bruno-mars-leave-the-door-open.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Fly As Me" data-artist="Bruno Mars, Anderson.Paak, Silk Sonic">
-            <source src="audio/bruno-mars-fly-as-me.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="After Last Night w/ Thundercat & Bootsy" data-artist="Bruno Mars, Anderson.Paak, Silk Sonic">
-            <source src="audio/bruno-mars-after-last-night.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Smokin Out The Window" data-artist="Bruno Mars, Anderson.Paak, Silk Sonic">
-            <source src="audio/bruno-mars-smokin-out-the-window.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Put On A Smile" data-artist="Bruno Mars, Anderson.Paak, Silk Sonic">
-            <source src="audio/bruno-mars-put-on-a-smile.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="777" data-artist="Bruno Mars, Anderson.Paak, Silk Sonic">
-            <source src="audio/bruno-mars-777.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Skate" data-artist="Bruno Mars, Anderson.Paak, Silk Sonic">
-            <source src="audio/bruno-mars-skate.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Love's Train (Con Funk Shun Cover)" data-artist="Bruno Mars, Anderson.Paak, Silk Sonic">
-            <source src="audio/bruno-mars-loves-train.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Blast Off" data-artist="Bruno Mars, Anderson.Paak, Silk Sonic">
-            <source src="audio/bruno-mars-blast-off.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Uptown Funk (feat. Bruno Mars)" data-artist="Mark Ronson, Bruno Mars">
-            <source src="audio/mark-ronson-uptown-funk.mp3" type="audio/mp3">
-        </audio>
-            <audio data-title="It Will Rain" data-artist="Bruno Mars">
-            <source src="audio/bruno-mars-it-will-rain.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Please Me" data-artist="Cardi B, Bruno Mars">
-            <source src="audio/cardi-b-please-me.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Wake Up in the Sky" data-artist="Gucci Mane, Bruno Mars, Kodak Black">
-            <source src="audio/gucci-mane-wake-up-in-the-sky.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Billionaire (feat. Bruno Mars)" data-artist="Travie McCoy, Bruno Mars">
-            <source src="audio/travie-mccoy-billionaire.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Nothin' on You (feat. Bruno Mars)" data-artist="B.o.B, Bruno Mars">
-            <source src="audio/b.o.b-nothin-on-you.mp3" type="audio/mp3">
-        </audio>
-        <audio data-title="Young, Wild & Free (feat. Bruno Mars)" data-artist="Snoop Dogg, Wiz Khalifa, Bruno Mars">
-            <source src="audio/snoop-dog-young-wild-free.mp3" type="audio/mp3">
         </audio>
     </div>
 
@@ -686,22 +545,16 @@
     <!-- Toast notifications container -->
     <div class="toast-container"></div>
 
-    <!-- Lazy load remaining resources -->
+    <!-- Optimized script - reduced and deferred -->
     <script>
-        // Enhanced script for track loading after page render
-        window.addEventListener('DOMContentLoaded', function() {
-            // Restore dark mode preference 
-            if (localStorage.getItem('dark-mode') === 'enabled') {
-                document.body.classList.add('dark-mode');
-            }
+        // Dark mode preference restoration
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+        }
             
-            // Set current year in footer
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Lazy load other audio sources
-            loadRemainingTracks();
-        });
-
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
         // Preloader removal
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
@@ -713,128 +566,9 @@
                 document.body.style.overflow = '';
                 
                 setTimeout(() => preloader.remove(), 500);
-            }, 1500); // Reduced from 2000ms
-        });
-        
-        // Lazy load tracks function
-        function loadRemainingTracks() {
-            const musicSources = document.getElementById('music-sources');
-            if (!musicSources) return;
+            }, 1000); // Reduced from 1500ms
             
-            const remainingTracks = [
-                { title: "Grenade", artist: "Bruno Mars", src: "audio/bruno-mars-grenade.mp3" },
-                { title: "Just The Way You Are", artist: "Bruno Mars", src: "audio/bruno-mars-just-the-way-you-are.mp3" },
-                { title: "Our First Time", artist: "Bruno Mars", src: "audio/bruno-mars-our-first-time.mp3" },
-                { title: "Runway Baby", artist: "Bruno Mars", src: "audio/bruno-mars-runaway-baby.mp3" },
-                { title: "The Lazy Song", artist: "Bruno Mars", src: "audio/bruno-mars-the-lazy-song.mp3" },
-                { title: "Marry You", artist: "Bruno Mars", src: "audio/bruno-mars-marry-you.mp3" },
-                { title: "Talking To The Moon", artist: "Bruno Mars", src: "audio/bruno-mars-talking-to-the-moon.mp3" },
-                { title: "Liquor Store Blues (feat. Damian Marley)", artist: "Bruno Mars, Damian Marley", src: "audio/bruno-mars-liquor-store-blues.mp3" },
-                { title: "Count on Me", artist: "Bruno Mars", src: "audio/bruno-mars-count-on-me.mp3" },
-                { title: "The Other Side (feat. CeeLo Green & B.o.B)", artist: "Bruno Mars, B.o.B, CeeLo Green", src: "audio/bruno-mars-the-other-side.mp3" },
-                { title: "Young Girls", artist: "Bruno Mars", src: "audio/bruno-mars-young-girls.mp3" },
-                { title: "Locked Out Of Heaven", artist: "Bruno Mars", src: "audio/bruno-mars-locked-out-of-heaven.mp3" },
-                { title: "Gorilla", artist: "Bruno Mars", src: "audio/bruno-mars-gorilla.mp3" },
-                { title: "Treasure", artist: "Bruno Mars", src: "audio/bruno-mars-treasure.mp3" },
-                { title: "Moonshine", artist: "Bruno Mars", src: "audio/bruno-mars-moonshine.mp3" },
-                { title: "When I Was Your Man", artist: "Bruno Mars", src: "audio/bruno-mars-when-i-was-your-man.mp3" },
-                { title: "Natalie", artist: "Bruno Mars", src: "audio/bruno-mars-natalie.mp3" },
-                { title: "Show Me", artist: "Bruno Mars", src: "audio/bruno-mars-show-me.mp3" },
-                { title: "Money Make Her Smile", artist: "Bruno Mars", src: "audio/bruno-mars-money-make-her-smile.mp3" },
-                { title: "If I Knew", artist: "Bruno Mars", src: "audio/bruno-mars-if-i-knew.mp3" },
-                { title: "24K Magic", artist: "Bruno Mars", src: "audio/bruno-mars-24k-magic.mp3" },
-                { title: "Chunky", artist: "Bruno Mars", src: "audio/bruno-mars-chunky.mp3" },
-                { title: "Perm", artist: "Bruno Mars", src: "audio/bruno-mars-perm.mp3" },
-                { title: "That's What I Like", artist: "Bruno Mars", src: "audio/bruno-mars-thats-what-i-like.mp3" },
-                { title: "Versace on the Floor", artist: "Bruno Mars", src: "audio/bruno-mars-versace-on-the-floor.mp3" },
-                { title: "Straight up & Down", artist: "Bruno Mars", src: "audio/bruno-mars-straight-up-&-down.mp3" },
-                { title: "Calling All My Lovelies", artist: "Bruno Mars", src: "audio/bruno-mars-calling-all-my-lovelies.mp3" },
-                { title: "Finesse (Remix) (feat. Cardi B)", artist: "Bruno Mars, Cardi B", src: "audio/bruno-mars-finesse.mp3" },
-                { title: "Too Good to Say Goodbye", artist: "Bruno Mars", src: "audio/bruno-mars-too-good-to-say-goodbye.mp3" },
-                { title: "Leave the Door Open", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-leave-the-door-open.mp3" },
-                { title: "Fly As Me", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-fly-as-me.mp3" },
-                { title: "After Last Night w/ Thundercat & Bootsy", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-after-last-night.mp3" },
-                { title: "Smokin Out The Window", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-smokin-out-the-window.mp3" },
-                { title: "Put On A Smile", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-put-on-a-smile.mp3" },
-                { title: "777", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-777.mp3" },
-                { title: "Skate", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-skate.mp3" },
-                { title: "Love's Train (Con Funk Shun Cover)", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-loves-train.mp3" },
-                { title: "Blast Off", artist: "Bruno Mars, Anderson.Paak, Silk Sonic", src: "audio/bruno-mars-blast-off.mp3" },
-                { title: "Uptown Funk (feat. Bruno Mars)", artist: "Mark Ronson, Bruno Mars", src: "audio/mark-ronson-uptown-funk.mp3" },
-                { title: "It Will Rain", artist: "Bruno Mars", src: "audio/bruno-mars-it-will-rain.mp3" },
-                { title: "Please Me", artist: "Cardi B, Bruno Mars", src: "audio/cardi-b-please-me.mp3" },
-                { title: "Wake Up in the Sky", artist: "Gucci Mane, Bruno Mars, Kodak Black", src: "audio/gucci-mane-wake-up-in-the-sky.mp3" },
-                { title: "Billionaire (feat. Bruno Mars)", artist: "Travie McCoy, Bruno Mars", src: "audio/travie-mccoy-billionaire.mp3" },
-                { title: "Nothin' on You (feat. Bruno Mars)", artist: "B.o.B, Bruno Mars", src: "audio/b.o.b-nothin-on-you.mp3" },
-                { title: "Young, Wild & Free (feat. Bruno Mars)", artist: "Snoop Dogg, Wiz Khalifa, Bruno Mars", src: "audio/snoop-dog-young-wild-free.mp3" },
-            ];
-            
-            // Load tracks in batches to avoid blocking
-            function loadTracksInBatches(tracks, batchSize, delay) {
-                let currentIndex = 0;
-                
-                function loadNextBatch() {
-                    if (currentIndex >= tracks.length) return;
-                    
-                    const endIndex = Math.min(currentIndex + batchSize, tracks.length);
-                    const batch = tracks.slice(currentIndex, endIndex);
-                    
-                    batch.forEach(track => {
-                        const audio = document.createElement('audio');
-                        audio.setAttribute('data-title', track.title);
-                        audio.setAttribute('data-artist', track.artist);
-                        audio.setAttribute('preload', 'none');
-                        
-                        const source = document.createElement('source');
-                        source.src = track.src;
-                        source.type = 'audio/mp3';
-                        
-                        audio.appendChild(source);
-                        musicSources.appendChild(audio);
-                    });
-                    
-                    currentIndex = endIndex;
-                    
-                    if (currentIndex < tracks.length) {
-                        setTimeout(loadNextBatch, delay);
-                    }
-                }
-                
-                loadNextBatch();
-            }
-            
-            // Load tracks in batches of 5 with 200ms delay between batches
-            loadTracksInBatches(remainingTracks, 5, 200);
-        }
-        
-        // Check for WebP support and apply appropriate images
-        function checkWebPSupport() {
-            const webP = new Image();
-            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-            
-            webP.onload = webP.onerror = function() {
-                const isWebPSupported = (webP.height === 2);
-                
-                document.body.classList.add(isWebPSupported ? 'webp' : 'no-webp');
-                
-                if (!isWebPSupported) {
-                    const webpImages = document.querySelectorAll('img[src$=".webp"]');
-                    webpImages.forEach(img => {
-                        img.src = img.src.replace('.webp', '.jpg');
-                        
-                        if (img.srcset) {
-                            img.srcset = img.srcset.replace(/\.webp/g, '.jpg');
-                        }
-                    });
-                }
-            };
-        }
-        
-        // Check WebP support
-        checkWebPSupport();
-        
-        // Load video after critical content
-        window.addEventListener('load', function() {
+            // Load video after critical content
             setTimeout(() => {
                 const videoElement = document.querySelector('.background-video');
                 if (videoElement) videoElement.load();
