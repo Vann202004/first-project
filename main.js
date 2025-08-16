@@ -1,5 +1,13 @@
 /* jshint esversion: 6 */
 
+/* ----- PRELOADER ----- */
+// Check for dark mode preference immediately before preloader appears
+if (localStorage.getItem('dark-mode') === 'enabled') {
+  document.body.classList.add('dark-mode');
+}
+
+// Preloader will be removed by the script in the HTML
+
 /* ----- NAVIGATION BAR FUNCTION ----- */
 function myMenuFunction(){
   var menuBtn = document.getElementById("myNavMenu");
@@ -88,8 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* ----- ## -- SCROLL REVEAL ANIMATION -- ## ----- */
 document.addEventListener('DOMContentLoaded', function() {
-  // Check if ScrollReveal is available and if user doesn't prefer reduced motion
-  if (typeof ScrollReveal !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (typeof ScrollReveal !== 'undefined') {
     const sr = ScrollReveal({
       origin: 'top',
       distance: '80px',
@@ -181,8 +188,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   let currentIndex = 0;
   
-  if (!lightbox || galleryItems.length === 0) return;
-
   // Open lightbox when gallery item is clicked
   galleryItems.forEach((item, index) => {
     item.addEventListener('click', function() {
@@ -196,38 +201,30 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Close lightbox when close button is clicked
-  if (lightboxClose) {
-    lightboxClose.addEventListener('click', closeLightbox);
-  }
+  lightboxClose.addEventListener('click', closeLightbox);
   
   // Close lightbox when clicking outside the image
-  if (lightbox) {
-    lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
-  }
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
   
   // Navigate to previous image
-  if (lightboxPrev) {
-    lightboxPrev.addEventListener('click', function() {
-      currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-      updateLightbox();
-    });
-  }
+  lightboxPrev.addEventListener('click', function() {
+    currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+    updateLightbox();
+  });
   
   // Navigate to next image
-  if (lightboxNext) {
-    lightboxNext.addEventListener('click', function() {
-      currentIndex = (currentIndex + 1) % galleryItems.length;
-      updateLightbox();
-    });
-  }
+  lightboxNext.addEventListener('click', function() {
+    currentIndex = (currentIndex + 1) % galleryItems.length;
+    updateLightbox();
+  });
   
   // Handle keyboard navigation
   document.addEventListener('keydown', function(e) {
-    if (!lightbox || !lightbox.style.display || lightbox.style.display === 'none') return;
+    if (!lightbox.style.display || lightbox.style.display === 'none') return;
     
     if (e.key === 'Escape') {
       closeLightbox();
@@ -241,8 +238,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   function openLightbox(imgSrc, title, desc) {
-    if (!lightboxImg || !lightboxTitle || !lightboxDesc || !lightbox) return;
-    
     lightboxImg.src = imgSrc;
     lightboxTitle.textContent = title;
     lightboxDesc.textContent = desc;
@@ -252,16 +247,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function closeLightbox() {
-    if (!lightbox) return;
-    
     lightbox.style.display = 'none';
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = ''; // Restore scrolling
   }
   
   function updateLightbox() {
-    if (!lightboxImg || !lightboxTitle || !lightboxDesc) return;
-    
     const item = galleryItems[currentIndex];
     const imgSrc = item.getAttribute('data-img');
     const title = item.querySelector('h3').textContent;
@@ -574,6 +565,48 @@ function initBackgroundMusic() {
         if (trackArtistElement) trackArtistElement.textContent = artist;
     }
 
+    // Show toast notification
+    function showToast(message, type) {
+        // Create toast container if it doesn't exist
+        let toastContainer = document.querySelector('.toast-container');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.className = 'toast-container';
+            document.body.appendChild(toastContainer);
+        }
+        
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <div class="toast-content">
+            <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512">
+              ${type === 'success' 
+                ? '<path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>' 
+                : '<path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>'}
+            </svg>
+            <div class="toast-message">${message}</div>
+          </div>
+          <svg class="svg-icon toast-close" aria-hidden="true" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+        `;
+        
+        // Add toast to container
+        toastContainer.appendChild(toast);
+        
+        // Add close button functionality
+        const closeBtn = toast.querySelector('.toast-close');
+        closeBtn.addEventListener('click', () => {
+            toast.classList.add('toast-hiding');
+            setTimeout(() => toast.remove(), 300);
+        });
+        
+        // Auto remove toast after 5 seconds
+        setTimeout(() => {
+            toast.classList.add('toast-hiding');
+            setTimeout(() => toast.remove(), 300);
+        }, 5000);
+    }
+
     // Event listeners
     if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlayPause);
     if (prevBtn) prevBtn.addEventListener('click', prevTrack);
@@ -588,52 +621,6 @@ function initBackgroundMusic() {
     
     // Initialize the player
     initPlayer();
-}
-
-// Show toast notification
-function showToast(message, type) {
-    // Create toast container if it doesn't exist
-    let toastContainer = document.querySelector('.toast-container');
-    if (!toastContainer) {
-        toastContainer = document.createElement('div');
-        toastContainer.className = 'toast-container';
-        document.body.appendChild(toastContainer);
-    }
-    
-    // Create toast element
-    const toast = document.createElement('div');
-    toast.className = `toast ${type}`;
-    toast.innerHTML = `
-      <div class="toast-content">
-        <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512">
-          ${type === 'success' 
-            ? '<path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>' 
-            : '<path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>'}
-        </svg>
-        <div class="toast-message">${message}</div>
-      </div>
-      <svg class="svg-icon toast-close" aria-hidden="true" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-    `;
-    
-    // Add toast to container
-    toastContainer.appendChild(toast);
-    
-    // Add close button functionality
-    const closeBtn = toast.querySelector('.toast-close');
-    closeBtn.addEventListener('click', () => {
-        toast.classList.add('toast-hiding');
-        setTimeout(() => toast.remove(), 300);
-    });
-    
-    // Auto remove toast after 5 seconds
-    setTimeout(() => {
-        if (toast.parentNode) { // Check if still in DOM
-            toast.classList.add('toast-hiding');
-            setTimeout(() => {
-                if (toast.parentNode) toast.remove();
-            }, 300);
-        }
-    }, 5000);
 }
 
 // Speech Bubble Animation
@@ -653,6 +640,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Call scrollActive once on page load to set initial active state
     scrollActive();
+    
+    // Set current year in footer
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
 });
 
 /* ----- CONTACT FORM FUNCTIONALITY ----- */
@@ -766,3 +759,49 @@ document.addEventListener('DOMContentLoaded', function() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 });
+
+// Toast notification function
+function showToast(message, type) {
+  // Create toast container if it doesn't exist
+  let toastContainer = document.querySelector('.toast-container');
+  if (!toastContainer) {
+    toastContainer = document.createElement('div');
+    toastContainer.className = 'toast-container';
+    document.body.appendChild(toastContainer);
+  }
+  
+  // Create toast element
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    <div class="toast-content">
+      <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512">
+        ${type === 'success' 
+          ? '<path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>' 
+          : '<path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>'}
+      </svg>
+      <div class="toast-message">${message}</div>
+    </div>
+    <svg class="svg-icon toast-close" aria-hidden="true" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+  `;
+  
+  // Add toast to container
+  toastContainer.appendChild(toast);
+  
+  // Add close button functionality
+  const closeBtn = toast.querySelector('.toast-close');
+  closeBtn.addEventListener('click', () => {
+    toast.classList.add('toast-hiding');
+    setTimeout(() => toast.remove(), 300);
+  });
+  
+  // Auto remove toast after 5 seconds
+  setTimeout(() => {
+    if (toast.parentNode) { // Check if still in DOM
+      toast.classList.add('toast-hiding');
+      setTimeout(() => {
+        if (toast.parentNode) toast.remove();
+      }, 300);
+    }
+  }, 5000);
+}
