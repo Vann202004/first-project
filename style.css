@@ -203,28 +203,6 @@ html{
     color: var(--third-color);
 }
 
-/* Font Awesome icon styling */
-.fa-arrow-turn-down {
-    transform: rotate(90deg);
-    margin-left: 5px;
-}
-
-.scroll-down a i {
-    font-size: 2rem;
-}
-
-@media only screen and (max-width: 768px) {
-    .scroll-down a i {
-        font-size: 1.5rem;
-    }
-}
-
-@media only screen and (max-width: 540px) {
-    .scroll-down a i {
-        font-size: 1.2rem;
-    }
-}
-
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0) translateX(-50%);
@@ -530,7 +508,7 @@ body.dark-mode .longfazers span {
     text-decoration: none;
     color: #333333;
 }
-.btn i {
+.btn .svg-icon{
     margin-left: 10px;
 }
 .btn:hover{
@@ -783,7 +761,7 @@ body{
     color: white;
 }
 
-.music-control-btn i {
+.music-control-btn .svg-icon {
     font-size: 20px;
 }
 
@@ -847,7 +825,7 @@ body.dark-mode .moon-sun {
     background: #333333;
 }
 
-.moon-sun i {
+.moon-sun .svg-icon {
     font-size: 20px;
     transition: 0.3s;
 }
@@ -891,7 +869,7 @@ body.dark-mode #sun {
 .nav-menu-btn{
     display: none;
 }
-.nav-menu-btn i {
+.nav-menu-btn .svg-icon{
     font-size: 28px;
     cursor: pointer;
 }
@@ -1079,7 +1057,7 @@ body.dark-mode .sticky {
    border-radius: 30px;
    box-shadow: var(--box-shadow);
 }
-.scroll-btn i {
+.scroll-btn .svg-icon{
     font-size: 20px;
 }
 
@@ -1090,7 +1068,7 @@ body.dark-mode .sticky {
         height: 45px;
         font-size: 14px;
     }
-    .scroll-btn i {
+    .scroll-btn .svg-icon {
         font-size: 18px;
     }
 }
@@ -1101,7 +1079,7 @@ body.dark-mode .sticky {
         height: 40px;
         font-size: 13px;
     }
-    .scroll-btn i {
+    .scroll-btn .svg-icon {
         font-size: 16px;
     }
 }
@@ -1114,7 +1092,7 @@ body.dark-mode .sticky {
         margin-bottom: -15%;
         gap: 3px;
     }
-    .scroll-btn i {
+    .scroll-btn .svg-icon {
         font-size: 14px;
     }
 }
@@ -1125,7 +1103,7 @@ body.dark-mode .sticky {
         height: 32px;
         font-size: 11px;
     }
-    .scroll-btn i {
+    .scroll-btn .svg-icon {
         font-size: 12px;
     }
     .scroll-icon-box {
@@ -1242,7 +1220,7 @@ h3{
     box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
     overflow: hidden;
 }
-.project-box>i{
+.project-box>.svg-icon{
     font-size: 50px;
     color: var(--first-color); /* Royal Azure */
     margin-bottom: 25px;
@@ -1265,7 +1243,7 @@ h3{
 .contact-info:hover.contact-info::after{
     bottom: 0;
 }
-.project-box:hover.project-box i,
+.project-box:hover.project-box .svg-icon,
 .project-box:hover.project-box>h3,
 .project-box:hover.project-box>label{
     color: var(--color-white);
@@ -1447,7 +1425,7 @@ h3{
     color: #FFFFFF;
     margin-block: 5px;
 }
-.contact-info p>i{
+.contact-info p>.svg-icon{
     font-size: 18px;
 }
 .contact-info::after{
@@ -1455,7 +1433,7 @@ h3{
 }
 .contact-info:hover.contact-info h2,
 .contact-info:hover.contact-info p,
-.contact-info:hover.contact-info i{
+.contact-info:hover.contact-info .svg-icon{
     color: #333333; /* Dark text for contrast on yellow */
     z-index: 2;
 }
@@ -1513,9 +1491,9 @@ textarea:focus {
 .form-button>.btn:hover{
     background: var(--second-color); /* Philippine Red */
 }
-.form-button i{
+.form-button .svg-icon{
     font-size: 18px;
-    transform: rotate(-45deg);
+    rotate: -45deg;
 }
 
 /* ----- FOOTER BOX ----- */
@@ -1604,7 +1582,7 @@ footer{
     box-shadow: 0 6px 15px rgba(206, 17, 38, 0.5);
 }
 
-.scroll-to-top-btn i {
+.scroll-to-top-btn .svg-icon {
     font-size: 20px;
 }
 
@@ -1623,7 +1601,7 @@ footer{
         right: 20px;
     }
     
-    .scroll-to-top-btn i {
+    .scroll-to-top-btn .svg-icon {
         font-size: 16px;
     }
 }
@@ -1744,7 +1722,7 @@ footer{
         right: 10px;
     }
     
-    .music-control-btn i {
+    .music-control-btn .svg-icon {
         font-size: 16px;
     }
     
@@ -1838,7 +1816,7 @@ footer{
         right: 5px;
     }
     
-    .music-control-btn i {
+    .music-control-btn .svg-icon {
         font-size: 14px;
     }
     
@@ -1900,7 +1878,7 @@ footer{
         height: 30px;
     }
     
-    .music-control-btn i {
+    .music-control-btn .svg-icon {
         font-size: 12px;
     }
 }
@@ -2290,15 +2268,15 @@ body.dark-mode .speech-bubble p::after {
   gap: 12px;
 }
 
-.toast-content i {
+.toast-content .svg-icon {
   font-size: 20px;
 }
 
-.toast.success i {
+.toast.success .svg-icon {
   color: #4CAF50;
 }
 
-.toast.error i {
+.toast.error .svg-icon {
   color: var(--second-color);
 }
 
