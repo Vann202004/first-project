@@ -4,9 +4,33 @@
 // Check for dark mode preference immediately before preloader appears
 if (localStorage.getItem('dark-mode') === 'enabled') {
   document.body.classList.add('dark-mode');
+  // Apply dark mode to preloader
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    preloader.classList.add('dark-mode');
+  }
 }
 
-// Preloader will be removed by the script in the HTML
+window.addEventListener('load', function() {
+  const preloader = document.getElementById('preloader');
+  
+  // Fade out the preloader after the page has loaded
+  setTimeout(function() {
+    preloader.style.opacity = '0';
+    preloader.style.visibility = 'hidden';
+    
+    // Enable scrolling on the body after preloader is hidden
+    document.body.style.overflow = '';
+    
+    // Remove preloader from DOM after transition
+    setTimeout(function() {
+      preloader.remove();
+    }, 500);
+  }, 2000); // Show preloader for 2 seconds
+});
+
+// Disable scrolling while preloader is visible
+document.body.style.overflow = 'hidden';
 
 /* ----- NAVIGATION BAR FUNCTION ----- */
 function myMenuFunction(){
@@ -67,85 +91,9 @@ function handleNavigation() {
     navHeader.style.lineHeight = "90px";
   }
   
-  // Update scroll to top button visibility
-  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-  if (scrollToTopBtn) {
-    if (scrollPosition > 300) {
-      scrollToTopBtn.classList.add('visible');
-    } else {
-      scrollToTopBtn.classList.remove('visible');
-    }
-  }
-  
   // Call the scrollActive function to update active links
   scrollActive();
 }
-
-/* ----- TYPING EFFECT ----- */
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof Typed !== 'undefined') {
-    var typingEffect = new Typed(".typedText", {
-      strings: ["Bruno Mars Cosplayer", "DP Photo Editor", "Coder"],
-      loop: true,
-      typeSpeed: 100, 
-      backSpeed: 80,
-      backDelay: 2000
-    });
-  }
-});
-
-/* ----- ## -- SCROLL REVEAL ANIMATION -- ## ----- */
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof ScrollReveal !== 'undefined') {
-    const sr = ScrollReveal({
-      origin: 'top',
-      distance: '80px',
-      duration: 2000,
-      reset: true     
-    });
-
-    /* -- HOME -- */
-    sr.reveal('.featured-text-card', {});
-    sr.reveal('.featured-name', {delay: 100});
-    sr.reveal('.featured-text-info', {delay: 200});
-    sr.reveal('.featured-text-btn', {delay: 200});
-    sr.reveal('.social_icons', {delay: 200});
-    sr.reveal('.featured-image', {delay: 300});
-
-    /* -- PROJECT BOX -- */
-    sr.reveal('.project-box', {interval: 200});
-
-    /* -- GALLERY -- */
-    sr.reveal('.gallery-item', {interval: 200});
-
-    /* -- HEADINGS -- */
-    sr.reveal('.top-header', {});
-
-    /* ----- ## -- SCROLL REVEAL LEFT_RIGHT ANIMATION -- ## ----- */
-
-    /* -- ABOUT INFO & CONTACT INFO -- */
-    const srLeft = ScrollReveal({
-      origin: 'left',
-      distance: '80px',
-      duration: 2000,
-      reset: true
-    });
-
-    srLeft.reveal('.about-info', {delay: 100});
-    srLeft.reveal('.contact-info', {delay: 100});
-
-    /* -- ABOUT SKILLS & FORM BOX -- */
-    const srRight = ScrollReveal({
-      origin: 'right',
-      distance: '80px',
-      duration: 2000,
-      reset: true
-    });
-
-    srRight.reveal('.skills-box', {delay: 100});
-    srRight.reveal('.form-control', {delay: 100});
-  }
-});
 
 /* ----- CHANGE ACTIVE LINK ----- */
 const sections = document.querySelectorAll('section[id]');
@@ -267,34 +215,40 @@ document.addEventListener('DOMContentLoaded', function() {
   const toggleSwitch = document.getElementById("toggle-switch");
   
   // Toggle dark mode when the switch is clicked
-  if (toggleSwitch) {
-    toggleSwitch.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      
-      // Save preference to localStorage
-      if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('dark-mode', 'enabled');
-      } else {
-        localStorage.setItem('dark-mode', 'disabled');
-      }
-    });
-  }
+  toggleSwitch.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    // Save preference to localStorage
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('dark-mode', 'enabled');
+    } else {
+      localStorage.setItem('dark-mode', 'disabled');
+    }
+  });
   
   // Initialize background music functionality
   initBackgroundMusic();
   
   /* ----- SCROLL TO TOP BUTTON ----- */
   const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-  if (scrollToTopBtn) {
-    // Scroll to top with smooth animation when button is clicked
-    scrollToTopBtn.addEventListener('click', function() {
-      // Smooth scroll to top
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+    
+  // Show/hide button based on scroll position
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      scrollToTopBtn.classList.add('visible');
+    } else {
+      scrollToTopBtn.classList.remove('visible');
+    }
+  });
+    
+  // Scroll to top with smooth animation when button is clicked
+  scrollToTopBtn.addEventListener('click', function() {
+    // Smooth scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
-  }
+  });
   
   // Initialize the progress ring on DOM ready
   setupProgressRing();
@@ -472,19 +426,15 @@ function initBackgroundMusic() {
         };
         
         // Update UI immediately to provide feedback
-        if (playPauseBtn) {
-            playPauseBtn.innerHTML = '<svg class="svg-icon" aria-hidden="true" viewBox="0 0 320 512"><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/></svg>';
-            playPauseBtn.setAttribute('aria-label', 'Pause music');
-        }
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause" aria-hidden="true"></i>';
+        playPauseBtn.setAttribute('aria-label', 'Pause music');
         isPlaying = true;
         
         audio.play()
             .then(() => {
                 if (playAttemptInProgress) { // Only update UI if we haven't cancelled
-                    if (playPauseBtn) {
-                        playPauseBtn.innerHTML = '<svg class="svg-icon" aria-hidden="true" viewBox="0 0 320 512"><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/></svg>';
-                        playPauseBtn.setAttribute('aria-label', 'Pause music');
-                    }
+                    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause" aria-hidden="true"></i>';
+                    playPauseBtn.setAttribute('aria-label', 'Pause music');
                     isPlaying = true;
                 }
             })
@@ -492,10 +442,8 @@ function initBackgroundMusic() {
                 console.error("Error playing audio:", error, "Source:", audio.src);
                 // Only update UI if this play attempt is still relevant
                 if (playAttemptInProgress) {
-                    if (playPauseBtn) {
-                        playPauseBtn.innerHTML = '<svg class="svg-icon" aria-hidden="true" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>';
-                        playPauseBtn.setAttribute('aria-label', 'Play music');
-                    }
+                    playPauseBtn.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+                    playPauseBtn.setAttribute('aria-label', 'Play music');
                     isPlaying = false;
                     
                     showToast("Error playing track. Trying next one.", "error");
@@ -523,10 +471,8 @@ function initBackgroundMusic() {
         
         if (audio) {
             audio.pause();
-            if (playPauseBtn) {
-                playPauseBtn.innerHTML = '<svg class="svg-icon" aria-hidden="true" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>';
-                playPauseBtn.setAttribute('aria-label', 'Play music');
-            }
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+            playPauseBtn.setAttribute('aria-label', 'Play music');
             isPlaying = false;
         }
     }
@@ -580,14 +526,10 @@ function initBackgroundMusic() {
         toast.className = `toast ${type}`;
         toast.innerHTML = `
           <div class="toast-content">
-            <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512">
-              ${type === 'success' 
-                ? '<path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>' 
-                : '<path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>'}
-            </svg>
+            <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" aria-hidden="true"></i>
             <div class="toast-message">${message}</div>
           </div>
-          <svg class="svg-icon toast-close" aria-hidden="true" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+          <i class="fa-solid fa-times toast-close" aria-hidden="true"></i>
         `;
         
         // Add toast to container
@@ -624,76 +566,114 @@ function initBackgroundMusic() {
 }
 
 // Speech Bubble Animation
-document.addEventListener('DOMContentLoaded', function() {
-    const speechBubble = document.querySelector('.speech-bubble');
-    if (speechBubble) {
-        // Make the speech bubble disappear after 5 seconds with ease-in-out
+const speechBubble = document.querySelector('.speech-bubble');
+if (speechBubble) {
+    // Make the speech bubble disappear after 5 seconds with ease-in-out
+    setTimeout(function() {
+        speechBubble.classList.add('disappear');
+        
+        // Remove from DOM after animation completes
         setTimeout(function() {
-            speechBubble.classList.add('disappear');
-            
-            // Remove from DOM after animation completes
-            setTimeout(function() {
-                speechBubble.remove();
-            }, 1000);
-        }, 10000); // Changed to 10 seconds instead of 34 seconds for better UX
-    }
-    
-    // Call scrollActive once on page load to set initial active state
-    scrollActive();
-    
-    // Set current year in footer
-    const yearElement = document.getElementById('current-year');
-    if (yearElement) {
-      yearElement.textContent = new Date().getFullYear();
-    }
+            speechBubble.remove();
+        }, 1000);
+    }, 10000); // Changed to 10 seconds instead of 34 seconds for better UX
+}
+
+// Respect reduced motion
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function initAnimations() {
+  if (reducedMotion) return;
+
+  if (window.Typed) {
+    new Typed(".typedText", {
+      strings: ["Bruno Mars Cosplayer", "DP Photo Editor", "Coder"],
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 80,
+      backDelay: 2000
+    });
+  }
+
+  if (window.ScrollReveal) {
+    const sr = ScrollReveal({ origin: 'top', distance: '80px', duration: 2000, reset: true });
+    sr.reveal('.featured-text-card', {});
+    sr.reveal('.featured-name', { delay: 100 });
+    sr.reveal('.featured-text-info', { delay: 200 });
+    sr.reveal('.featured-text-btn', { delay: 200 });
+    sr.reveal('.social_icons', { delay: 200 });
+    sr.reveal('.featured-image', { delay: 300 });
+    sr.reveal('.project-box', { interval: 200 });
+    sr.reveal('.gallery-item', { interval: 200 });
+    sr.reveal('.top-header', {});
+    const srLeft = ScrollReveal({ origin: 'left', distance: '80px', duration: 2000, reset: true });
+    srLeft.reveal('.about-info', { delay: 100 });
+    srLeft.reveal('.contact-info', { delay: 100 });
+    const srRight = ScrollReveal({ origin: 'right', distance: '80px', duration: 2000, reset: true });
+    srRight.reveal('.skills-box', { delay: 100 });
+    srRight.reveal('.form-control', { delay: 100 });
+  }
+}
+
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(initAnimations, { timeout: 2000 });
+} else {
+  window.addEventListener('load', () => setTimeout(initAnimations, 800));
+}
+
+// Call scrollActive once on page load to set initial active state
+document.addEventListener('DOMContentLoaded', function() {
+  scrollActive();
+  
+  // Set current year in footer
+  const yearElement = document.getElementById('current-year');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 });
 
 /* ----- CONTACT FORM FUNCTIONALITY ----- */
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('.form-control');
-  if (!form) return;
-  
   const nameInput = document.getElementById('name');
   const emailInput = document.getElementById('email');
   const messageTextarea = document.getElementById('message');
   const submitButton = form.querySelector('.form-button .btn');
 
   // Add form submission event
-  if (submitButton) {
-    submitButton.addEventListener('click', function(e) {
-      e.preventDefault();
+  submitButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Validate form fields
+    if (validateForm()) {
+      // Show sending feedback
+      const originalButtonText = submitButton.innerHTML;
+      submitButton.innerHTML = 'Sending <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+      submitButton.disabled = true;
       
-      // Validate form fields
-      if (validateForm()) {
-        // Show sending feedback
-        const originalButtonText = submitButton.innerHTML;
-        submitButton.innerHTML = 'Sending <svg class="svg-icon fa-spinner" aria-hidden="true" viewBox="0 0 512 512"><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/></svg>';
-        submitButton.disabled = true;
+      // Simulate form submission (since we don't have a backend)
+      setTimeout(() => {
+        // Clear form fields
+        nameInput.value = '';
+        emailInput.value = '';
+        messageTextarea.value = '';
         
-        // Simulate form submission (since we don't have a backend)
+        // Show success message
+        submitButton.innerHTML = 'Sent Successfully <i class="fa-solid fa-check" aria-hidden="true"></i>';
+        submitButton.style.backgroundColor = '#4CAF50';
+        
+        // Reset button after 3 seconds
         setTimeout(() => {
-          // Clear form fields
-          nameInput.value = '';
-          emailInput.value = '';
-          messageTextarea.value = '';
-          
-          // Show success message
-          submitButton.innerHTML = 'Sent Successfully <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>';
-          submitButton.style.backgroundColor = '#4CAF50';
-          
-          // Reset button after 3 seconds
-          setTimeout(() => {
-            submitButton.innerHTML = originalButtonText;
-            submitButton.disabled = false;
-            submitButton.style.backgroundColor = '';
-          }, 3000);
-          
-          // Show toast notification
-          showToast('Message sent successfully!', 'success');
-        }, 1500);
-      }
-    });
-  }
+          submitButton.innerHTML = originalButtonText;
+          submitButton.disabled = false;
+          submitButton.style.backgroundColor = '';
+        }, 3000);
+        
+        // Show toast notification
+        showToast('Message sent successfully!', 'success');
+      }, 1500);
+    }
+  });
 
   // Form validation function
   function validateForm() {
@@ -758,50 +738,107 @@ document.addEventListener('DOMContentLoaded', function() {
   function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
+
+  // Toast notification function
+  function showToast(message, type) {
+    // Create toast container if it doesn't exist
+    let toastContainer = document.querySelector('.toast-container');
+    if (!toastContainer) {
+      toastContainer = document.createElement('div');
+      toastContainer.className = 'toast-container';
+      document.body.appendChild(toastContainer);
+    }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+      <div class="toast-content">
+        <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" aria-hidden="true"></i>
+        <div class="toast-message">${message}</div>
+      </div>
+      <i class="fa-solid fa-times toast-close" aria-hidden="true"></i>
+    `;
+    
+    // Add toast to container
+    toastContainer.appendChild(toast);
+    
+    // Add close button functionality
+    const closeBtn = toast.querySelector('.toast-close');
+    closeBtn.addEventListener('click', () => {
+      toast.classList.add('toast-hiding');
+      setTimeout(() => toast.remove(), 300);
+    });
+    
+    // Auto remove toast after 5 seconds
+    setTimeout(() => {
+      toast.classList.add('toast-hiding');
+      setTimeout(() => toast.remove(), 300);
+    }, 5000);
+  }
 });
 
-// Toast notification function
-function showToast(message, type) {
-  // Create toast container if it doesn't exist
-  let toastContainer = document.querySelector('.toast-container');
-  if (!toastContainer) {
-    toastContainer = document.createElement('div');
-    toastContainer.className = 'toast-container';
-    document.body.appendChild(toastContainer);
-  }
-  
-  // Create toast element
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  toast.innerHTML = `
-    <div class="toast-content">
-      <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512">
-        ${type === 'success' 
-          ? '<path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>' 
-          : '<path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>'}
-      </svg>
-      <div class="toast-message">${message}</div>
-    </div>
-    <svg class="svg-icon toast-close" aria-hidden="true" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-  `;
-  
-  // Add toast to container
-  toastContainer.appendChild(toast);
-  
-  // Add close button functionality
-  const closeBtn = toast.querySelector('.toast-close');
-  closeBtn.addEventListener('click', () => {
-    toast.classList.add('toast-hiding');
-    setTimeout(() => toast.remove(), 300);
-  });
-  
-  // Auto remove toast after 5 seconds
-  setTimeout(() => {
-    if (toast.parentNode) { // Check if still in DOM
-      toast.classList.add('toast-hiding');
-      setTimeout(() => {
-        if (toast.parentNode) toast.remove();
-      }, 300);
+// Progressive loading of video elements
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.background-video');
+    if (!video) return;
+
+    const tryPlay = () => {
+      if (!video.dataset.autoplay) return;
+      // Respect user preferences
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const saveData = navigator.connection && navigator.connection.saveData;
+      if (reduceMotion || saveData) return;
+
+      // Defer real loading and autoplay to idle time
+      const start = () => {
+        // ensure source is parsed
+        if (video.readyState === 0) video.load();
+        video.play().catch(() => {/* ignore autoplay block */});
+      };
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(start, { timeout: 2000 });
+      } else {
+        setTimeout(start, 1200);
+      }
+    };
+
+    if (document.readyState === 'complete') {
+      tryPlay();
+    } else {
+      window.addEventListener('load', tryPlay);
     }
-  }, 5000);
+    
+    // Check for WebP support and apply appropriate images
+    checkWebPSupport();
+});
+
+// Function to check WebP support
+function checkWebPSupport() {
+    // Create WebP test image
+    const webP = new Image();
+    webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+    
+    // Check if WebP is supported
+    webP.onload = webP.onerror = function() {
+        const isWebPSupported = (webP.height === 2);
+        
+        // Set a body class based on WebP support
+        document.body.classList.add(isWebPSupported ? 'webp' : 'no-webp');
+        
+        // For browsers that don't support WebP, swap to JPG/PNG
+        if (!isWebPSupported) {
+            const webpImages = document.querySelectorAll('img[src$=".webp"]');
+            webpImages.forEach(img => {
+                // Replace .webp with .jpg or original format
+                img.src = img.src.replace('.webp', '.jpg');
+                
+                // Also replace in srcset if it exists
+                if (img.srcset) {
+                    img.srcset = img.srcset.replace(/\.webp/g, '.jpg');
+                }
+            });
+        }
+    };
 }
