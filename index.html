@@ -13,28 +13,19 @@
     
     <!-- Critical CSS inline -->
     <style>
-        #preloader{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#FCD116;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}body{margin:0;padding:0;overflow:hidden;font-family:sans-serif}:root{--body-color:#FFF;--color-white:#FFF;--text-color-second:#333;--text-color-third:#CE1126;--first-color:#0038A8;--first-color-hover:#002A80;--second-color:#CE1126;--third-color:#FCD116;--first-shadow-color:rgba(0,0,0,.1);--bg-card:#FFF;--bg-form:#FFF;--input-border:#AAA;--footer-bg:#FFF;--scroll-bar-color:#F1F1F1;--scroll-thumb-color:#0038A8;--scroll-thumb-hover:#002A80;--modal-bg:rgba(0,0,0,.4);--icons-bg:#F4F4F4;--box-shadow:0 2px 5px 0 rgba(0,0,0,.25)}body.dark-mode{--body-color:#1A1A1A;--color-white:#1E1E1E;--text-color-second:#FFF;--text-color-third:#FF6B6B;--first-shadow-color:rgba(0,0,0,.3);--bg-card:#242424;--bg-form:#242424;--input-border:#555;--footer-bg:#1A1A1A;--scroll-bar-color:#333;--scroll-thumb-color:#CE1126;--scroll-thumb-hover:#FF6B6B;--modal-bg:rgba(0,0,0,.7);--icons-bg:#2A2A2A;--box-shadow:0 2px 5px 0 rgba(255,255,255,.1)}.skip-link{position:absolute;top:-40px;left:0;background:#0038A8;color:#fff;padding:8px;z-index:10000;transition:top .3s}.skip-link:focus{top:0}nav{margin:0;display:flex;justify-content:space-between;width:100%;height:90px;line-height:90px;background:var(--body-color);padding-inline:9vw;transition:.3s;z-index:100}.nav-logo{position:relative}.nav-name{font-size:30px;font-weight:600;color:var(--text-color-second)}.nav-logo span{position:absolute;top:-1.1px;right:-30px;font-size:1.9em;color:var(--third-color)}.right-nav-controls{display:flex;align-items:center;gap:20px}.nav-menu,.nav_menu_list{display:flex}.nav-menu .nav_list{list-style:none;position:relative}.nav-link{text-decoration:none;color:var(--text-color-second);font-weight:500;padding-inline:15px;margin-inline:20px}.nav-menu-btn{display:none}.active-link{position:relative;color:var(--second-color);transition:.3}.active-link::after{content:'';position:absolute;left:50%;bottom:-15px;transform:translate(-50%,-50%);width:5px;height:5px;background:var(--second-color);border-radius:50%}.sticky{position:fixed;top:0;width:100%;background-color:var(--body-color);box-shadow:0 4px 10px rgba(0,0,0,.1)!important;z-index:1000;transition:all .3s ease;height:70px!important;line-height:70px!important;animation:slideDown .5s;margin:0}@keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}.nav-spacer{height:90px;display:none}.spacer-active{display:block}.wrapper{padding-inline:10vw;max-width:100%;box-sizing:border-box}.featured-box{position:relative;display:flex;height:100vh;min-height:700px;width:100%}.featured-text{position:relative;display:flex;justify-content:center;align-content:center;min-height:80vh;flex-direction:column;width:50%;padding-left:20px}.featured-text-card span{background:var(--third-color);color:#333;padding:3px 8px;font-size:12px;border-radius:5px}.featured-name{font-size:50px;font-weight:600;color:var(--text-color-second);margin-block:20px}.typedText{text-transform:capitalize;color:var(--second-color)}.featured-text-info{font-size:15px;margin-bottom:30px;color:var(--text-color-second)}.featured-text-btn{display:flex;gap:20px}.featured-text-btn>.blue-btn{background:var(--first-color);color:#FFF}.featured-text-btn>.blue-btn:hover{background:var(--first-color-hover)}.btn{font-weight:500;padding:12px 20px;background:var(--third-color);border:none;border-radius:10px;cursor:pointer;transition:.4s;text-decoration:none;color:#333}.btn>i{margin-left:10px}.btn:hover{background:var(--second-color);color:var(--color-white)}.video-background{position:relative;width:100%;height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center;aspect-ratio:16/9;min-height:60vh}.background-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}.video-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(rgba(0,56,168,.7),rgba(206,17,38,.7));z-index:1}.video-content{position:relative;z-index:2;text-align:center;color:#fff;padding:20px;max-width:800px}.video-content h1{font-size:4rem;font-weight:700;margin-bottom:20px;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+        :root{--body-color:#FFFFFF;--color-white:#FFFFFF;--text-color-second:#333333;--text-color-third:#CE1126;--first-color:#0038A8;--first-color-hover:#002A80;--second-color:#CE1126;--third-color:#FCD116;--first-shadow-color:rgba(0,0,0,0.1);--bg-card:#FFFFFF;--bg-form:#FFFFFF;--input-border:#AAA;--footer-bg:#FFFFFF;--scroll-bar-color:#F1F1F1;--scroll-thumb-color:#0038A8;--scroll-thumb-hover:#002A80;--modal-bg:rgba(0,0,0,0.4);--icons-bg:#F4F4F4;--box-shadow:0px 2px 5px 0px rgba(0,0,0,0.25)}body.dark-mode{--body-color:#1A1A1A;--color-white:#1E1E1E;--text-color-second:#FFFFFF;--text-color-third:#FF6B6B;--first-shadow-color:rgba(0,0,0,0.3);--bg-card:#242424;--bg-form:#242424;--input-border:#555;--footer-bg:#1A1A1A;--scroll-bar-color:#333333;--scroll-thumb-color:#CE1126;--scroll-thumb-hover:#FF6B6B;--modal-bg:rgba(0,0,0,0.7);--icons-bg:#2A2A2A;--box-shadow:0px 2px 5px 0px rgba(255,255,255,0.1)}.section,.featured-box,#projects,#gallery,#about,#contact{content-visibility:auto;contain-intrinsic-size:800px 1200px}.video-background{aspect-ratio:16 / 9;min-height:60vh}.background-video{width:100%;height:100%;object-fit:cover}*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}html,body{overflow-x:hidden;width:100%}html{scroll-behavior:smooth}::-webkit-scrollbar{width:10px;border-radius:25px}::-webkit-scrollbar-track{background:var(--scroll-bar-color)}::-webkit-scrollbar-thumb{background:var(--scroll-thumb-color);border-radius:30px}::-webkit-scrollbar-thumb:hover{background:var(--scroll-thumb-hover)}.skip-link{position:absolute;top:-40px;left:0;background:#0038A8;color:white;padding:8px;z-index:10000;transition:top 0.3s}.skip-link:focus{top:0}#preloader{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#FCD116;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}body{margin:0;padding:0;overflow:hidden;font-family:sans-serif;background:var(--body-color);color:var(--text-color-second);transition:background-color 0.3s,color 0.3s}.svg-icon{display:inline-block;width:1em;height:1em;fill:currentColor;vertical-align:-0.125em}nav{margin:0px;display:flex;justify-content:space-between;width:100%;height:90px;line-height:90px;background:var(--body-color);padding-inline:9vw;transition:.3s;z-index:100}.nav-logo{position:relative}.nav-name{font-size:30px;font-weight:600;color:var(--text-color-second)}.nav-logo span{position:absolute;top:-1.1px;right:-30px;font-size:1.9em;color:var(--third-color)}
     </style>
 
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-
-    <!-- Favicon -->
-    <link rel="icon" href="images/favicon.webp" sizes="32x32" type="image/webp">
+    <!-- Preload critical fonts and resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
     
-    <!-- Async CSS loading -->
-    <link rel="stylesheet" href="style.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="style.min.css"></noscript>
+    <!-- CSS -->
+    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
 
-    <!-- FONT AWESOME (async loading) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
-    <!-- Fonts with display=swap for better visibility during loading -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" crossorigin>
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <!-- FAVICON -->
+    <link rel="icon" href="images/favicon.webp" sizes="32x32" type="image/webp">
 
     <title>Vann Rich Ferrer | Portfolio Website</title>
 </head>
@@ -67,14 +58,9 @@
 
    <!-- Video Background Section -->
    <section class="video-background">
-       <video 
-           class="background-video"
-           playsinline
-           muted
-           preload="none"
-           data-autoplay="true"
-           aria-hidden="true">
+       <video class="background-video" playsinline muted preload="none" data-autoplay="true" aria-hidden="true" width="1920" height="1080">
            <source src="videos/videocover.MP4" type="video/mp4">
+           <source src="videos/videocover.MP4" type="video/mp4" media="(max-width: 768px)">
        </video>
        <div class="video-overlay"></div>
        <div class="video-content">
@@ -82,7 +68,7 @@
        </div>
        <div class="scroll-down">
            <a href="#home" aria-label="Scroll down to home section">
-               <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+               <svg class="svg-icon" aria-hidden="true" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
            </a>
        </div>
    </section>
@@ -97,12 +83,16 @@
     <!-- Music Controls Bar -->
     <div class="music-controls-bar">
         <div class="music-controls">
-            <button id="prevBtn" class="control-btn" aria-label="Previous track"><i class="fa-solid fa-backward" aria-hidden="true"></i></button>
+            <button id="prevBtn" class="control-btn" aria-label="Previous track">
+                <svg class="svg-icon" aria-hidden="true" viewBox="0 0 320 512"><path d="M267.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160L64 241V96c0-17.7-14.3-32-32-32S0 78.3 0 96V416c0 17.7 14.3 32 32 32s32-14.3 32-32V271l11.5 9.6 192 160z"/></svg>
+            </button>
             <div class="track-info">
                 <span id="current-track-name">Select a track to play</span>
                 <span id="track-artist" class="track-artist"></span>
             </div>
-            <button id="nextBtn" class="control-btn" aria-label="Next track"><i class="fa-solid fa-forward" aria-hidden="true"></i></button>
+            <button id="nextBtn" class="control-btn" aria-label="Next track">
+                <svg class="svg-icon" aria-hidden="true" viewBox="0 0 320 512"><path d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"/></svg>
+            </button>
         </div>
         <audio id="audio" preload="none" tabindex="0"></audio>
     </div>
@@ -141,15 +131,19 @@
             <!-- Dark mode toggle switch -->
             <div class="mode">
                 <div class="moon-sun" id="toggle-switch" aria-label="Toggle dark mode">
-                    <i class="fa-solid fa-moon" id="moon" aria-hidden="true"></i>
-                    <i class="fa-solid fa-sun" id="sun" aria-hidden="true"></i>
+                    <svg id="moon" class="svg-icon" aria-hidden="true" viewBox="0 0 384 512"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
+                    <svg id="sun" class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
                 </div>
             </div>
             <div class="nav-button">
-                <a href="#gallery" class="btn">Explore Gallery Now <i class="fa-solid fa-images" aria-hidden="true"></i></a>
+                <a href="#gallery" class="btn">Explore Gallery Now 
+                    <svg class="svg-icon" aria-hidden="true" viewBox="0 0 576 512"><path d="M160 32c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320H328 280 200c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120z"/></svg>
+                </a>
             </div>
             <div class="nav-menu-btn">
-                <i class="fa-solid fa-bars" onclick="myMenuFunction()" aria-label="Toggle menu"></i>
+                <button aria-label="Toggle menu" onclick="myMenuFunction()">
+                    <svg class="svg-icon" aria-hidden="true" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                </button>
             </div>
         </div>
       </nav>
@@ -174,13 +168,23 @@
             </div>
             <div class="featured-text-btn">
                 <a href="#contact" class="btn blue-btn">Contact Me</a>
-                <a href="#gallery" class="btn">Explore Gallery Now <i class="fa-solid fa-images" aria-hidden="true"></i></a>
+                <a href="#gallery" class="btn">Explore Gallery Now 
+                    <svg class="svg-icon" aria-hidden="true" viewBox="0 0 576 512"><path d="M160 32c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320H328 280 200c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120z"/></svg>
+                </a>
             </div>
             <div class="social_icons">
-                <div class="icon"><a href="https://www.instagram.com/vmars24k/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></div>
-                <div class="icon"><a href="https://www.facebook.com/vann.rich.3/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></div>
-                <div class="icon"><a href="https://www.youtube.com/@brunomars" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></div>
-                <div class="icon"><a href="https://www.brunomars.com/" aria-label="Bruno Mars Official Website" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-globe" aria-hidden="true"></i></a></div>
+                <div class="icon"><a href="https://www.instagram.com/vmars24k/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                    <svg class="svg-icon" aria-hidden="true" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                </a></div>
+                <div class="icon"><a href="https://www.facebook.com/vann.rich.3/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                    <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                </a></div>
+                <div class="icon"><a href="https://www.youtube.com/@brunomars" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                    <svg class="svg-icon" aria-hidden="true" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                </a></div>
+                <div class="icon"><a href="https://www.brunomars.com/" aria-label="Bruno Mars Official Website" target="_blank" rel="noopener noreferrer">
+                    <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"/></svg>
+                </a></div>
             </div>
           </div>
           <div class="featured-image">
@@ -205,14 +209,14 @@
                         <img src="images/profile.webp" 
                              srcset="images/profile-sm.webp 400w, images/profile.webp 800w" 
                              sizes="(max-width: 600px) 400px, 800px"
-                             width="800" height="800"
+                             width="380" height="380"
                              fetchpriority="high"
                              decoding="async"
                              alt="Profile photo of Vann Rich Ferrer">
                     </div>
                 </div>
                 <button id="playPauseBtn" class="music-control-btn" aria-label="Play or pause music">
-                    <i class="fa-solid fa-play" aria-hidden="true"></i>
+                    <svg class="svg-icon" aria-hidden="true" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>
                 </button>
             </div>
             <div>
@@ -221,7 +225,7 @@
           </div>
           <div class="scroll-icon-box">
             <a href="#about" class="scroll-btn" aria-label="Scroll to About section">
-                <i class="fa-solid fa-mouse" aria-hidden="true"></i>
+                <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
                 <p>Scroll Down</p>
             </a>
           </div>
@@ -243,7 +247,9 @@
                        often with features like background removal, text overlays, and applying filters or effects. 
                     </p>
                     <div class="about-btn">
-                        <a href="#gallery" class="btn">Explore Gallery Now <i class="fa-solid fa-images" aria-hidden="true"></i></a>
+                        <a href="#gallery" class="btn">Explore Gallery Now 
+                            <svg class="svg-icon" aria-hidden="true" viewBox="0 0 576 512"><path d="M160 32c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320H328 280 200c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120z"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -288,19 +294,19 @@
           </div>
           <div class="project-container">
             <div class="project-box">
-                <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                <svg class="svg-icon" style="font-size: 50px; margin-bottom: 25px;" aria-hidden="true" viewBox="0 0 512 512"><path d="M184 48H328c4.4 0 8 3.6 8 8V96H176V56c0-4.4 3.6-8 8-8zm-56 8V96H64C28.7 96 0 124.7 0 160v96H192 320 512V160c0-35.3-28.7-64-64-64H384V56c0-30.9-25.1-56-56-56H184c-30.9 0-56 25.1-56 56zM512 288H320v32c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32V288H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V288z"/></svg>
                 <h3>Completed</h3>
                 <label>14+ Finished Projects</label>
                 <label>20+ Photo Edits</label>
                 <label>3+ Cosplayed</label>
             </div>
             <div class="project-box">
-                <i class="fa-solid fa-crown" aria-hidden="true"></i>
+                <svg class="svg-icon" style="font-size: 50px; margin-bottom: 25px;" aria-hidden="true" viewBox="0 0 576 512"><path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/></svg>
                 <h3>Bruno Mars Look-alike</h3>
                 <label>I'm Him</label>
             </div>
             <div class="project-box">
-                <i class="fa-solid fa-award" aria-hidden="true"></i>
+                <svg class="svg-icon" style="font-size: 50px; margin-bottom: 25px;" aria-hidden="true" viewBox="0 0 384 512"><path d="M173.8 5.5c11-7.3 25.4-7.3 36.4 0L228 17.2c6 3.9 13 5.8 20.1 5.4l21.3-1.3c13.2-.8 25.6 6.4 31.5 18.2l9.6 19.1c3.2 6.4 8.4 11.5 14.7 14.7L344.5 83c11.8 5.9 19 18.3 18.2 31.5l-1.3 21.3c-.4 7.1 1.5 14.2 5.4 20.1l11.8 17.8c7.3 11 7.3 25.4 0 36.4L366.8 228c-3.9 6-5.8 13-5.4 20.1l1.3 21.3c.8 13.2-6.4 25.6-18.2 31.5l-19.1 9.6c-6.4 3.2-11.5 8.4-14.7 14.7L301 344.5c-5.9 11.8-18.3 19-31.5 18.2l-21.3-1.3c-7.1-.4-14.2 1.5-20.1 5.4l-17.8 11.8c-11 7.3-25.4 7.3-36.4 0L156 366.8c-6-3.9-13-5.8-20.1-5.4l-21.3 1.3c-13.2 .8-25.6-6.4-31.5-18.2l-9.6-19.1c-3.2-6.4-8.4-11.5-14.7-14.7L39.5 301c-11.8-5.9-19-18.3-18.2-31.5l1.3-21.3c.4-7.1-1.5-14.2-5.4-20.1L5.5 210.2c-7.3-11-7.3-25.4 0-36.4L17.2 156c3.9-6 5.8-13 5.4-20.1l-1.3-21.3c-.8-13.2 6.4-25.6 18.2-31.5l19.1-9.6C65 70.2 70.2 65 73.4 58.6L83 39.5c5.9-11.8 18.3-19 31.5-18.2l21.3 1.3c7.1 .4 14.2-1.5 20.1-5.4L173.8 5.5zM272 192a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM1.3 441.8L44.4 339.3c.2 .1 .3 .2 .4 .4l9.6 19.1c11.7 23.2 36 37.3 62 35.8l21.3-1.3c.2 0 .5 0 .7 .2l17.8 11.8c5.1 3.3 10.5 5.9 16.1 7.7l-37.6 89.3c-2.3 5.5-7.4 9.2-13.3 9.7s-11.6-2.2-14.8-7.2L74.4 455.5l-56.1 8.3c-5.7 .8-11.4-1.5-15-6s-4.3-10.7-2.1-16zm248 60.4L211.7 413c5.6-1.8 11-4.3 16.1-7.7l17.8-11.8c.2-.1 .4-.2 .7-.2l21.3 1.3c26 1.5 50.3-12.6 62-35.8l9.6-19.1c.1-.2 .2-.3 .4-.4l43.2 102.5c2.2 5.3 1.4 11.4-2.1 16s-9.3 6.9-15 6l-56.1-8.3-32.2 49.2c-3.2 5-8.9 7.7-14.8 7.2s-11-4.3-13.3-9.7z"/></svg>
                 <h3>Experience</h3>
                 <label>2.6 Years in the IT field</label>
             </div>
@@ -319,6 +325,7 @@
                        srcset="images/image1-thumb.webp 400w, images/image1-thumb.webp 800w" 
                        sizes="(max-width: 767px) 400px, 800px"
                        loading="lazy" 
+                       width="800" height="1200"
                        alt="Bruno-San at Tokyo Disneyland">
                   <div class="gallery-overlay">
                       <h3>Bruno-San</h3>
@@ -330,6 +337,7 @@
                        srcset="images/image2-thumb.webp 400w, images/image2-thumb.webp 800w" 
                        sizes="(max-width: 767px) 400px, 800px"
                        loading="lazy" 
+                       width="800" height="1200"
                        alt="Photo at Solea Mactan Cebu Resort">
                   <div class="gallery-overlay">
                       <h3>Is It Hot In Here Or Is It Just Me?</h3>
@@ -341,6 +349,7 @@
                        srcset="images/image3-thumb.webp 400w, images/image3-thumb.webp 800w" 
                        sizes="(max-width: 767px) 400px, 800px"
                        loading="lazy" 
+                       width="800" height="1200"
                        alt="Men's Health Month photo">
                   <div class="gallery-overlay">
                       <h3>My Introversion Personality Trait</h3>
@@ -352,6 +361,7 @@
                        srcset="images/image4-thumb.webp 400w, images/image4-thumb.webp 800w" 
                        sizes="(max-width: 767px) 400px, 800px"
                        loading="lazy" 
+                       width="800" height="1200"
                        alt="Visit to Cebu Ocean Park">
                   <div class="gallery-overlay">
                       <h3>Look At All Those Aquatic Animals</h3>
@@ -363,6 +373,7 @@
                        srcset="images/image5-thumb.webp 400w, images/image5-thumb.webp 800w" 
                        sizes="(max-width: 767px) 400px, 800px"
                        loading="lazy" 
+                       width="800" height="1200"
                        alt="Christmas pool day with friends">
                   <div class="gallery-overlay">
                       <h3>1# Christmas Pool Day With The Gang</h3>
@@ -374,6 +385,7 @@
                        srcset="images/image6-thumb.webp 400w, images/image6-thumb.webp 800w" 
                        sizes="(max-width: 767px) 400px, 800px"
                        loading="lazy" 
+                       width="800" height="1200"
                        alt="Seijuro Akashi cosplay">
                   <div class="gallery-overlay">
                       <h3>I Am Abosulute!</h3>
@@ -385,6 +397,7 @@
                        srcset="images/image7-thumb.webp 400w, images/image7-thumb.webp 800w" 
                        sizes="(max-width: 767px) 400px, 800px"
                        loading="lazy" 
+                       width="800" height="1200"
                        alt="Year 12 Muck Up Day photo">
                   <div class="gallery-overlay">
                       <h3>A Lazy Man</h3>
@@ -396,6 +409,7 @@
                        srcset="images/image8-thumb.webp 400w, images/image8-thumb.webp 800w" 
                        sizes="(max-width: 767px) 400px, 800px"
                        loading="lazy" 
+                       width="800" height="1200"
                        alt="Sports activities photo">
                   <div class="gallery-overlay">
                       <h3>Just Me. My Peak Self.</h3>
@@ -407,6 +421,7 @@
                        srcset="images/image9-thumb.webp 400w, images/image9-thumb.webp 800w" 
                        sizes="(max-width: 767px) 400px, 800px"
                        loading="lazy" 
+                       width="800" height="1200"
                        alt="CSC Senior Jersey 2022">
                   <div class="gallery-overlay">
                       <h3>Bruno Mars Jersey</h3>
@@ -428,9 +443,9 @@
           <div class="row">
              <div class="col">
                 <div class="contact-info">
-                    <h2>Find Me <i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i></h2>
-                    <p><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email: vannferrer2004@gmail.com</p>
-                    <p><i class="fa-solid fa-phone" aria-hidden="true"></i> Tel: +610432515005</p>
+                    <h2>Find Me <svg class="svg-icon"></svg></h2>
+                    <p><svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg> Email: vannferrer2004@gmail.com</p>
+                    <p><svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg> Tel: +610432515005</p>
                 </div>
              </div>
              <div class="col">
@@ -450,7 +465,9 @@
                         <textarea id="message" placeholder="Message" aria-required="true"></textarea>
                     </div>
                     <div class="form-button">
-                        <button class="btn" type="button">Send <i class="fa-solid fa-message" aria-hidden="true"></i></button>
+                        <button class="btn" type="button">Send 
+                            <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+                        </button>
                     </div>
                 </div>
              </div>
@@ -463,7 +480,7 @@
     <div id="lightbox" class="lightbox" aria-hidden="true">
         <span class="lightbox-close" aria-label="Close">&times;</span>
         <div class="lightbox-content">
-            <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Fullscreen Image">
+            <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Fullscreen Image" width="1200" height="800">
             <div class="lightbox-caption">
                 <h3 id="lightbox-title">Image Title</h3>
                 <p id="lightbox-desc"></p>
@@ -498,10 +515,18 @@
             </ul>
         </div>
         <div class="footer-social-icons">
-            <div class="icon"><a href="https://www.instagram.com/vmars24k/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></div>
-            <div class="icon"><a href="https://www.facebook.com/vann.rich.3/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></div>
-            <div class="icon"><a href="https://www.youtube.com/@brunomars" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></div>
-            <div class="icon"><a href="https://www.brunomars.com/" aria-label="Bruno Mars Official Website" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-globe" aria-hidden="true"></i></a></div>
+            <div class="icon"><a href="https://www.instagram.com/vmars24k/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <svg class="svg-icon" aria-hidden="true" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+            </a></div>
+            <div class="icon"><a href="https://www.facebook.com/vann.rich.3/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+            </a></div>
+            <div class="icon"><a href="https://www.youtube.com/@brunomars" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                <svg class="svg-icon" aria-hidden="true" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+            </a></div>
+            <div class="icon"><a href="https://www.brunomars.com/" aria-label="Bruno Mars Official Website" target="_blank" rel="noopener noreferrer">
+                <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"/></svg>
+            </a></div>
         </div>
         <div class="bottom-footer">
             <p> &copy; <span id="current-year">2025</span> <a href="#home" style="text-decoration: none;">Vann Rich Ferrer.</a> All rights reserved.</p>
@@ -512,6 +537,7 @@
 
     <!-- Background Music -->
     <div id="music-sources" style="display: none;">
+        <!-- First few tracks loaded directly -->
         <audio data-title="Fat Juicy & Wet" data-artist="Sexyy Red, Bruno Mars">
             <source src="audio/sexyy-red-fat-juicy-wet.mp3" type="audio/mp3">
         </audio>
@@ -525,25 +551,154 @@
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Scroll to top">
-        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+        <svg class="svg-icon" aria-hidden="true" viewBox="0 0 384 512"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
     </button>
 
     <!-- Toast notifications container -->
     <div class="toast-container"></div>
 
-    <!-- Load essential scripts with defer -->
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.min.js" defer></script>
-    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
-    <script src="main.min.js" defer></script>
-
-    <!-- Update current year in footer -->
+    <!-- Enhanced script for loading -->
     <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-        
         // Check for dark mode preference immediately
         if (localStorage.getItem('dark-mode') === 'enabled') {
-            document.body.classList.add('dark-mode');
+          document.body.classList.add('dark-mode');
+        }
+        
+        // Set current year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Lazy load other audio sources after critical content loads
+            loadRemainingTracks();
+            
+            // Check for WebP support
+            checkWebPSupport();
+        });
+
+        // Preloader removal with shorter timeout
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if (!preloader) return;
+            
+            setTimeout(function() {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                document.body.style.overflow = '';
+                
+                setTimeout(() => preloader.remove(), 500);
+            }, 1500);
+            
+            // Load video after critical content is displayed
+            loadVideoElements();
+        });
+        
+        // Function to load videos after page load
+        function loadVideoElements() {
+            const videoElements = document.querySelectorAll('video[data-autoplay="true"]');
+            if (!videoElements.length) return;
+            
+            // Check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            videoElements.forEach(video => {
+                if (prefersReducedMotion) {
+                    // Replace with a still frame or just don't load for reduced motion users
+                    return;
+                }
+                
+                // Wait a bit before loading video to avoid competing with other resources
+                setTimeout(() => {
+                    video.load();
+                    video.play().catch(() => {
+                        // Autoplay failed, handle gracefully
+                        console.log('Video autoplay prevented by browser policy');
+                    });
+                }, 2000);
+            });
+        }
+        
+        // Lazy load tracks function with batching
+        function loadRemainingTracks() {
+            const musicSources = document.getElementById('music-sources');
+            if (!musicSources) return;
+            
+            const remainingTracks = [
+                { title: "Grenade", artist: "Bruno Mars", src: "audio/bruno-mars-grenade.mp3" },
+                { title: "Just The Way You Are", artist: "Bruno Mars", src: "audio/bruno-mars-just-the-way-you-are.mp3" },
+                { title: "Our First Time", artist: "Bruno Mars", src: "audio/bruno-mars-our-first-time.mp3" },
+            ];
+            
+            // Load tracks in batches to avoid blocking
+            function loadTracksInBatches(tracks, batchSize, delay) {
+                let currentIndex = 0;
+                
+                function loadNextBatch() {
+                    if (currentIndex >= tracks.length) return;
+                    
+                    const endIndex = Math.min(currentIndex + batchSize, tracks.length);
+                    const batch = tracks.slice(currentIndex, endIndex);
+                    
+                    batch.forEach(track => {
+                        const audio = document.createElement('audio');
+                        audio.setAttribute('data-title', track.title);
+                        audio.setAttribute('data-artist', track.artist);
+                        audio.setAttribute('preload', 'none');
+                        
+                        const source = document.createElement('source');
+                        source.src = track.src;
+                        source.type = 'audio/mp3';
+                        
+                        audio.appendChild(source);
+                        musicSources.appendChild(audio);
+                    });
+                    
+                    currentIndex = endIndex;
+                    
+                    if (currentIndex < tracks.length) {
+                        setTimeout(loadNextBatch, delay);
+                    }
+                }
+                
+                loadNextBatch();
+            }
+            
+            // Load tracks in batches of 2 with 200ms delay between batches
+            loadTracksInBatches(remainingTracks, 2, 200);
+        }
+        
+        // Function to check WebP support
+        function checkWebPSupport() {
+            const webP = new Image();
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+            
+            webP.onload = webP.onerror = function() {
+                const isWebPSupported = (webP.height === 2);
+                
+                document.body.classList.add(isWebPSupported ? 'webp' : 'no-webp');
+                
+                if (!isWebPSupported) {
+                    const webpImages = document.querySelectorAll('img[src$=".webp"]');
+                    webpImages.forEach(img => {
+                        // Replace .webp with .jpg or original format
+                        img.src = img.src.replace('.webp', '.jpg');
+                        
+                        // Also replace in srcset if it exists
+                        if (img.srcset) {
+                            img.srcset = img.srcset.replace(/\.webp/g, '.jpg');
+                        }
+                    });
+                }
+            };
         }
     </script>
+
+    <!-- TYPING JS Link - load with defer -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js" defer></script>
+
+    <!-- SCROLL REVEAL JS Link - load with defer -->
+    <script src="https://unpkg.com/scrollreveal" defer></script>
+
+    <!-- MAIN JS - load with defer -->
+    <script src="main.js" defer></script>
 </body>
 </html>
