@@ -11,32 +11,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     
+    <!-- Critical CSS inline -->
+    <style>
+        #preloader{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#FCD116;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}body{margin:0;padding:0;overflow:hidden;font-family:sans-serif}:root{--body-color:#FFF;--color-white:#FFF;--text-color-second:#333;--text-color-third:#CE1126;--first-color:#0038A8;--first-color-hover:#002A80;--second-color:#CE1126;--third-color:#FCD116;--first-shadow-color:rgba(0,0,0,.1);--bg-card:#FFF;--bg-form:#FFF;--input-border:#AAA;--footer-bg:#FFF;--scroll-bar-color:#F1F1F1;--scroll-thumb-color:#0038A8;--scroll-thumb-hover:#002A80;--modal-bg:rgba(0,0,0,.4);--icons-bg:#F4F4F4;--box-shadow:0 2px 5px 0 rgba(0,0,0,.25)}body.dark-mode{--body-color:#1A1A1A;--color-white:#1E1E1E;--text-color-second:#FFF;--text-color-third:#FF6B6B;--first-shadow-color:rgba(0,0,0,.3);--bg-card:#242424;--bg-form:#242424;--input-border:#555;--footer-bg:#1A1A1A;--scroll-bar-color:#333;--scroll-thumb-color:#CE1126;--scroll-thumb-hover:#FF6B6B;--modal-bg:rgba(0,0,0,.7);--icons-bg:#2A2A2A;--box-shadow:0 2px 5px 0 rgba(255,255,255,.1)}.skip-link{position:absolute;top:-40px;left:0;background:#0038A8;color:#fff;padding:8px;z-index:10000;transition:top .3s}.skip-link:focus{top:0}nav{margin:0;display:flex;justify-content:space-between;width:100%;height:90px;line-height:90px;background:var(--body-color);padding-inline:9vw;transition:.3s;z-index:100}.nav-logo{position:relative}.nav-name{font-size:30px;font-weight:600;color:var(--text-color-second)}.nav-logo span{position:absolute;top:-1.1px;right:-30px;font-size:1.9em;color:var(--third-color)}.right-nav-controls{display:flex;align-items:center;gap:20px}.nav-menu,.nav_menu_list{display:flex}.nav-menu .nav_list{list-style:none;position:relative}.nav-link{text-decoration:none;color:var(--text-color-second);font-weight:500;padding-inline:15px;margin-inline:20px}.nav-menu-btn{display:none}.active-link{position:relative;color:var(--second-color);transition:.3}.active-link::after{content:'';position:absolute;left:50%;bottom:-15px;transform:translate(-50%,-50%);width:5px;height:5px;background:var(--second-color);border-radius:50%}.sticky{position:fixed;top:0;width:100%;background-color:var(--body-color);box-shadow:0 4px 10px rgba(0,0,0,.1)!important;z-index:1000;transition:all .3s ease;height:70px!important;line-height:70px!important;animation:slideDown .5s;margin:0}@keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}.nav-spacer{height:90px;display:none}.spacer-active{display:block}.wrapper{padding-inline:10vw;max-width:100%;box-sizing:border-box}.featured-box{position:relative;display:flex;height:100vh;min-height:700px;width:100%}.featured-text{position:relative;display:flex;justify-content:center;align-content:center;min-height:80vh;flex-direction:column;width:50%;padding-left:20px}.featured-text-card span{background:var(--third-color);color:#333;padding:3px 8px;font-size:12px;border-radius:5px}.featured-name{font-size:50px;font-weight:600;color:var(--text-color-second);margin-block:20px}.typedText{text-transform:capitalize;color:var(--second-color)}.featured-text-info{font-size:15px;margin-bottom:30px;color:var(--text-color-second)}.featured-text-btn{display:flex;gap:20px}.featured-text-btn>.blue-btn{background:var(--first-color);color:#FFF}.featured-text-btn>.blue-btn:hover{background:var(--first-color-hover)}.btn{font-weight:500;padding:12px 20px;background:var(--third-color);border:none;border-radius:10px;cursor:pointer;transition:.4s;text-decoration:none;color:#333}.btn>i{margin-left:10px}.btn:hover{background:var(--second-color);color:var(--color-white)}.video-background{position:relative;width:100%;height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center;aspect-ratio:16/9;min-height:60vh}.background-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}.video-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(rgba(0,56,168,.7),rgba(206,17,38,.7));z-index:1}.video-content{position:relative;z-index:2;text-align:center;color:#fff;padding:20px;max-width:800px}.video-content h1{font-size:4rem;font-weight:700;margin-bottom:20px;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+    </style>
+
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 
-    <!-- Critical CSS inline -->
-    <style>
-        #preloader{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#FCD116;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}
-        body{margin:0;padding:0;overflow:hidden;font-family:sans-serif}
-        .skip-link{position:absolute;top:-40px;left:0;background:#0038A8;color:white;padding:8px;z-index:10000;transition:top 0.3s}
-        .skip-link:focus{top:0}
-    </style>
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.webp" sizes="32x32" type="image/webp">
+    
+    <!-- Async CSS loading -->
+    <link rel="stylesheet" href="style.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="style.min.css"></noscript>
 
-    <!-- FONT AWESOME (defer non-critical) -->
+    <!-- FONT AWESOME (async loading) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- FAVICON -->
-    <link rel="icon" href="images/favicon.webp" sizes="16x16" type="image/webp">
-    <link rel="icon" href="images/favicon.webp" sizes="32x32" type="image/webp">
-    <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Fonts with display=swap for better visibility during loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" crossorigin>
     <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
     <title>Vann Rich Ferrer | Portfolio Website</title>
@@ -78,7 +75,6 @@
            data-autoplay="true"
            aria-hidden="true">
            <source src="videos/videocover.MP4" type="video/mp4">
-           <source src="videos/videocover.MP4" type="video/mp4" media="(max-width: 768px)">
        </video>
        <div class="video-overlay"></div>
        <div class="video-content">
@@ -524,7 +520,7 @@
         </audio>
         <audio data-title="Die With A Smile" data-artist="Lady Gaga, Bruno Mars">
             <source src="audio/lady-gaga-die-with-a-smile.mp3" type="audio/mp3">
-        </audio>y
+        </audio>
     </div>
 
     <!-- Scroll to Top Button -->
@@ -535,45 +531,19 @@
     <!-- Toast notifications container -->
     <div class="toast-container"></div>
 
-    <!-- TYPING JS Link - load with defer -->
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js" defer></script>
+    <!-- Load essential scripts with defer -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.min.js" defer></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
+    <script src="main.min.js" defer></script>
 
-    <!-- SCROLL REVEAL JS Link - load with defer -->
-    <script src="https://unpkg.com/scrollreveal" defer></script>
-
-    <!-- MAIN JS - load with defer -->
-    <script src="main.js" defer></script>
-
-    <!-- Remaining audio tracks loaded after page renders -->
+    <!-- Update current year in footer -->
     <script>
-        // Load the remaining audio tracks after page is loaded
-        window.addEventListener('DOMContentLoaded', function() {
-            const musicSources = document.getElementById('music-sources');
-            if (!musicSources) return;
-
-            // Append the rest of the audio elements
-            const remainingTracks = [
-                { title: "Fat Juicy & Wet", artist: "Sexyy Red, Bruno Mars", src: "audio/sexyy-red-fat-juicy-wet.mp3" },
-                { title: "APT.", artist: "ROSÉ, Bruno Mars", src: "audio/rose-apt.mp3" },
-                { title: "Die With A Smile", artist: "Lady Gaga, Bruno Mars", src: "audio/lady-gaga-die-with-a-smile.mp3" },
-            ];
-
-            remainingTracks.forEach(track => {
-                const audio = document.createElement('audio');
-                audio.setAttribute('data-title', track.title);
-                audio.setAttribute('data-artist', track.artist);
-                
-                const source = document.createElement('source');
-                source.src = track.src;
-                source.type = 'audio/mp3';
-                
-                audio.appendChild(source);
-                musicSources.appendChild(audio);
-            });
-        });
-
-        // Update current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Check for dark mode preference immediately
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+        }
     </script>
 </body>
 </html>
