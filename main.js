@@ -95,64 +95,6 @@ function handleNavigation() {
   scrollActive();
 }
 
-/* ----- TYPING EFFECT ----- */
-var typingEffect = new Typed(".typedText", {
-  strings: ["Bruno Mars Cosplayer", "DP Photo Editor", "Coder"],
-  loop: true,
-  typeSpeed: 100, 
-  backSpeed: 80,
-  backDelay: 2000
-});
-
-/* ----- ## -- SCROLL REVEAL ANIMATION -- ## ----- */
-const sr = ScrollReveal({
-  origin: 'top',
-  distance: '80px',
-  duration: 2000,
-  reset: true     
-});
-
-/* -- HOME -- */
-sr.reveal('.featured-text-card', {});
-sr.reveal('.featured-name', {delay: 100});
-sr.reveal('.featured-text-info', {delay: 200});
-sr.reveal('.featured-text-btn', {delay: 200});
-sr.reveal('.social_icons', {delay: 200});
-sr.reveal('.featured-image', {delay: 300});
-
-/* -- PROJECT BOX -- */
-sr.reveal('.project-box', {interval: 200});
-
-/* -- GALLERY -- */
-sr.reveal('.gallery-item', {interval: 200});
-
-/* -- HEADINGS -- */
-sr.reveal('.top-header', {});
-
-/* ----- ## -- SCROLL REVEAL LEFT_RIGHT ANIMATION -- ## ----- */
-
-/* -- ABOUT INFO & CONTACT INFO -- */
-const srLeft = ScrollReveal({
-  origin: 'left',
-  distance: '80px',
-  duration: 2000,
-  reset: true
-});
-
-srLeft.reveal('.about-info', {delay: 100});
-srLeft.reveal('.contact-info', {delay: 100});
-
-/* -- ABOUT SKILLS & FORM BOX -- */
-const srRight = ScrollReveal({
-  origin: 'right',
-  distance: '80px',
-  duration: 2000,
-  reset: true
-});
-
-srRight.reveal('.skills-box', {delay: 100});
-srRight.reveal('.form-control', {delay: 100});
-
 /* ----- CHANGE ACTIVE LINK ----- */
 const sections = document.querySelectorAll('section[id]');
 
@@ -637,6 +579,48 @@ if (speechBubble) {
     }, 10000); // Changed to 10 seconds instead of 34 seconds for better UX
 }
 
+// Respect reduced motion
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function initAnimations() {
+  if (reducedMotion) return;
+
+  if (window.Typed) {
+    new Typed(".typedText", {
+      strings: ["Bruno Mars Cosplayer", "DP Photo Editor", "Coder"],
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 80,
+      backDelay: 2000
+    });
+  }
+
+  if (window.ScrollReveal) {
+    const sr = ScrollReveal({ origin: 'top', distance: '80px', duration: 2000, reset: true });
+    sr.reveal('.featured-text-card', {});
+    sr.reveal('.featured-name', { delay: 100 });
+    sr.reveal('.featured-text-info', { delay: 200 });
+    sr.reveal('.featured-text-btn', { delay: 200 });
+    sr.reveal('.social_icons', { delay: 200 });
+    sr.reveal('.featured-image', { delay: 300 });
+    sr.reveal('.project-box', { interval: 200 });
+    sr.reveal('.gallery-item', { interval: 200 });
+    sr.reveal('.top-header', {});
+    const srLeft = ScrollReveal({ origin: 'left', distance: '80px', duration: 2000, reset: true });
+    srLeft.reveal('.about-info', { delay: 100 });
+    srLeft.reveal('.contact-info', { delay: 100 });
+    const srRight = ScrollReveal({ origin: 'right', distance: '80px', duration: 2000, reset: true });
+    srRight.reveal('.skills-box', { delay: 100 });
+    srRight.reveal('.form-control', { delay: 100 });
+  }
+}
+
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(initAnimations, { timeout: 2000 });
+} else {
+  window.addEventListener('load', () => setTimeout(initAnimations, 800));
+}
+
 // Call scrollActive once on page load to set initial active state
 document.addEventListener('DOMContentLoaded', function() {
   scrollActive();
@@ -796,16 +780,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Progressive loading of video elements
 document.addEventListener('DOMContentLoaded', function() {
-    const videoElement = document.querySelector('.background-video');
-    
-    if (videoElement) {
-        // Only start loading video after page is fully loaded
-        window.addEventListener('load', function() {
-            // Small delay to prioritize other critical resources
-            setTimeout(() => {
-                videoElement.load();
-            }, 500);
-        });
+    const video = document.querySelector('.background-video');
+    if (!video) return;
+
+    const tryPlay = () => {
+      if (!video.dataset.autoplay) return;
+      // Respect user preferences
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const saveData = navigator.connection && navigator.connection.saveData;
+      if (reduceMotion || saveData) return;
+
+      // Defer real loading and autoplay to idle time
+      const start = () => {
+        // ensure source is parsed
+        if (video.readyState === 0) video.load();
+        video.play().catch(() => {/* ignore autoplay block */});
+      };
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(start, { timeout: 2000 });
+      } else {
+        setTimeout(start, 1200);
+      }
+    };
+
+    if (document.readyState === 'complete') {
+      tryPlay();
+    } else {
+      window.addEventListener('load', tryPlay);
     }
     
     // Check for WebP support and apply appropriate images
