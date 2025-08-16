@@ -575,7 +575,7 @@ function initBackgroundMusic() {
 // Speech Bubble Animation
 const speechBubble = document.querySelector('.speech-bubble');
 if (speechBubble) {
-    // Make the speech bubble disappear after 5 seconds with ease-in-out
+    // Make the speech bubble disappear after 20 seconds with ease-in-out
     setTimeout(function() {
         speechBubble.classList.add('disappear');
         
@@ -583,7 +583,7 @@ if (speechBubble) {
         setTimeout(function() {
             speechBubble.remove();
         }, 1000);
-    }, 10000); // Changed to 10 seconds instead of 34 seconds for better UX
+    }, 20000); // Changed to 20 seconds instead of 34 seconds for better UX
 }
 
 // Respect reduced motion
