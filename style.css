@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 /* ----- VARIABLES ----- */
 :root{
     --body-color: #FFFFFF; /* White from Philippines flag */
@@ -44,28 +46,6 @@ body.dark-mode {
     --modal-bg: rgba(0, 0, 0, 0.7);
     --icons-bg: #2A2A2A;
     --box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.1);
-}
-
-/* Performance: allow the browser to skip offscreen work */
-.section,
-.featured-box,
-#projects,
-#gallery,
-#about,
-#contact {
-  content-visibility: auto;
-  contain-intrinsic-size: 800px 1200px; /* reserve space to avoid CLS */
-}
-
-/* Ensure video section has a stable box for CLS */
-.video-background {
-  aspect-ratio: 16 / 9;
-  min-height: 60vh;
-}
-.background-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 /* ----- BASE ----- */
@@ -221,6 +201,28 @@ html{
 
 .scroll-down a:hover {
     color: var(--third-color);
+}
+
+/* Font Awesome icon styling */
+.fa-arrow-turn-down {
+    transform: rotate(90deg);
+    margin-left: 5px;
+}
+
+.scroll-down a i {
+    font-size: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .scroll-down a i {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .scroll-down a i {
+        font-size: 1.2rem;
+    }
 }
 
 @keyframes bounce {
@@ -528,6 +530,9 @@ body.dark-mode .longfazers span {
     text-decoration: none;
     color: #333333;
 }
+.btn i {
+    margin-left: 10px;
+}
 .btn:hover{
     background: var(--second-color); /* Philippine Red */
     color: var(--color-white);
@@ -565,10 +570,6 @@ body.dark-mode .longfazers span {
     height: 1em;
     fill: currentColor;
     vertical-align: -0.125em;
-}
-
-.btn .svg-icon {
-    margin-left: 10px;
 }
 
 .nav-menu-btn button {
@@ -782,7 +783,7 @@ body{
     color: white;
 }
 
-.music-control-btn .svg-icon {
+.music-control-btn i {
     font-size: 20px;
 }
 
@@ -846,7 +847,7 @@ body.dark-mode .moon-sun {
     background: #333333;
 }
 
-.moon-sun .svg-icon {
+.moon-sun i {
     font-size: 20px;
     transition: 0.3s;
 }
@@ -890,7 +891,7 @@ body.dark-mode #sun {
 .nav-menu-btn{
     display: none;
 }
-.nav-menu-btn .svg-icon{
+.nav-menu-btn i {
     font-size: 28px;
     cursor: pointer;
 }
@@ -1078,7 +1079,7 @@ body.dark-mode .sticky {
    border-radius: 30px;
    box-shadow: var(--box-shadow);
 }
-.scroll-btn .svg-icon{
+.scroll-btn i {
     font-size: 20px;
 }
 
@@ -1089,7 +1090,7 @@ body.dark-mode .sticky {
         height: 45px;
         font-size: 14px;
     }
-    .scroll-btn .svg-icon {
+    .scroll-btn i {
         font-size: 18px;
     }
 }
@@ -1100,7 +1101,7 @@ body.dark-mode .sticky {
         height: 40px;
         font-size: 13px;
     }
-    .scroll-btn .svg-icon {
+    .scroll-btn i {
         font-size: 16px;
     }
 }
@@ -1113,7 +1114,7 @@ body.dark-mode .sticky {
         margin-bottom: -15%;
         gap: 3px;
     }
-    .scroll-btn .svg-icon {
+    .scroll-btn i {
         font-size: 14px;
     }
 }
@@ -1124,7 +1125,7 @@ body.dark-mode .sticky {
         height: 32px;
         font-size: 11px;
     }
-    .scroll-btn .svg-icon {
+    .scroll-btn i {
         font-size: 12px;
     }
     .scroll-icon-box {
@@ -1241,7 +1242,7 @@ h3{
     box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
     overflow: hidden;
 }
-.project-box>.svg-icon{
+.project-box>i{
     font-size: 50px;
     color: var(--first-color); /* Royal Azure */
     margin-bottom: 25px;
@@ -1264,7 +1265,7 @@ h3{
 .contact-info:hover.contact-info::after{
     bottom: 0;
 }
-.project-box:hover.project-box .svg-icon,
+.project-box:hover.project-box i,
 .project-box:hover.project-box>h3,
 .project-box:hover.project-box>label{
     color: var(--color-white);
@@ -1446,7 +1447,7 @@ h3{
     color: #FFFFFF;
     margin-block: 5px;
 }
-.contact-info p>.svg-icon{
+.contact-info p>i{
     font-size: 18px;
 }
 .contact-info::after{
@@ -1454,7 +1455,7 @@ h3{
 }
 .contact-info:hover.contact-info h2,
 .contact-info:hover.contact-info p,
-.contact-info:hover.contact-info .svg-icon{
+.contact-info:hover.contact-info i{
     color: #333333; /* Dark text for contrast on yellow */
     z-index: 2;
 }
@@ -1512,9 +1513,9 @@ textarea:focus {
 .form-button>.btn:hover{
     background: var(--second-color); /* Philippine Red */
 }
-.form-button .svg-icon{
+.form-button i{
     font-size: 18px;
-    rotate: -45deg;
+    transform: rotate(-45deg);
 }
 
 /* ----- FOOTER BOX ----- */
@@ -1603,7 +1604,7 @@ footer{
     box-shadow: 0 6px 15px rgba(206, 17, 38, 0.5);
 }
 
-.scroll-to-top-btn .svg-icon {
+.scroll-to-top-btn i {
     font-size: 20px;
 }
 
@@ -1622,7 +1623,7 @@ footer{
         right: 20px;
     }
     
-    .scroll-to-top-btn .svg-icon {
+    .scroll-to-top-btn i {
         font-size: 16px;
     }
 }
@@ -1743,7 +1744,7 @@ footer{
         right: 10px;
     }
     
-    .music-control-btn .svg-icon {
+    .music-control-btn i {
         font-size: 16px;
     }
     
@@ -1837,7 +1838,7 @@ footer{
         right: 5px;
     }
     
-    .music-control-btn .svg-icon {
+    .music-control-btn i {
         font-size: 14px;
     }
     
@@ -1899,7 +1900,7 @@ footer{
         height: 30px;
     }
     
-    .music-control-btn .svg-icon {
+    .music-control-btn i {
         font-size: 12px;
     }
 }
@@ -2289,15 +2290,15 @@ body.dark-mode .speech-bubble p::after {
   gap: 12px;
 }
 
-.toast-content .svg-icon {
+.toast-content i {
   font-size: 20px;
 }
 
-.toast.success .svg-icon {
+.toast.success i {
   color: #4CAF50;
 }
 
-.toast.error .svg-icon {
+.toast.error i {
   color: var(--second-color);
 }
 
