@@ -426,14 +426,14 @@ function initBackgroundMusic() {
         };
         
         // Update UI immediately to provide feedback
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause" aria-hidden="true"></i>';
+        playPauseBtn.innerHTML = '<svg class="svg-icon" aria-hidden="true" viewBox="0 0 320 512"><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/></svg>';
         playPauseBtn.setAttribute('aria-label', 'Pause music');
         isPlaying = true;
         
         audio.play()
             .then(() => {
                 if (playAttemptInProgress) { // Only update UI if we haven't cancelled
-                    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause" aria-hidden="true"></i>';
+                    playPauseBtn.innerHTML = '<svg class="svg-icon" aria-hidden="true" viewBox="0 0 320 512"><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/></svg>';
                     playPauseBtn.setAttribute('aria-label', 'Pause music');
                     isPlaying = true;
                 }
@@ -442,7 +442,7 @@ function initBackgroundMusic() {
                 console.error("Error playing audio:", error, "Source:", audio.src);
                 // Only update UI if this play attempt is still relevant
                 if (playAttemptInProgress) {
-                    playPauseBtn.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+                    playPauseBtn.innerHTML = '<svg class="svg-icon" aria-hidden="true" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>';
                     playPauseBtn.setAttribute('aria-label', 'Play music');
                     isPlaying = false;
                     
@@ -471,7 +471,7 @@ function initBackgroundMusic() {
         
         if (audio) {
             audio.pause();
-            playPauseBtn.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+            playPauseBtn.innerHTML = '<svg class="svg-icon" aria-hidden="true" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>';
             playPauseBtn.setAttribute('aria-label', 'Play music');
             isPlaying = false;
         }
@@ -526,10 +526,17 @@ function initBackgroundMusic() {
         toast.className = `toast ${type}`;
         toast.innerHTML = `
           <div class="toast-content">
-            <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" aria-hidden="true"></i>
+            <svg class="svg-icon" aria-hidden="true" viewBox="0 0 ${type === 'success' ? '512 512' : '512 512'}">
+              ${type === 'success' 
+                ? '<path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>'
+                : '<path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>'
+              }
+            </svg>
             <div class="toast-message">${message}</div>
           </div>
-          <i class="fa-solid fa-times toast-close" aria-hidden="true"></i>
+          <div class="toast-close">
+            <svg class="svg-icon" aria-hidden="true" viewBox="0 0 320 512"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg>
+          </div>
         `;
         
         // Add toast to container
@@ -648,7 +655,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (validateForm()) {
       // Show sending feedback
       const originalButtonText = submitButton.innerHTML;
-      submitButton.innerHTML = 'Sending <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+      submitButton.innerHTML = 'Sending <svg class="svg-icon fa-spinner" aria-hidden="true" viewBox="0 0 512 512"><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/></svg>';
       submitButton.disabled = true;
       
       // Simulate form submission (since we don't have a backend)
@@ -659,7 +666,7 @@ document.addEventListener('DOMContentLoaded', function() {
         messageTextarea.value = '';
         
         // Show success message
-        submitButton.innerHTML = 'Sent Successfully <i class="fa-solid fa-check" aria-hidden="true"></i>';
+        submitButton.innerHTML = 'Sent Successfully <svg class="svg-icon" aria-hidden="true" viewBox="0 0 512 512"><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>';
         submitButton.style.backgroundColor = '#4CAF50';
         
         // Reset button after 3 seconds
@@ -754,10 +761,17 @@ document.addEventListener('DOMContentLoaded', function() {
     toast.className = `toast ${type}`;
     toast.innerHTML = `
       <div class="toast-content">
-        <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" aria-hidden="true"></i>
+        <svg class="svg-icon" aria-hidden="true" viewBox="0 0 ${type === 'success' ? '512 512' : '512 512'}">
+          ${type === 'success' 
+            ? '<path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>'
+            : '<path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>'
+          }
+        </svg>
         <div class="toast-message">${message}</div>
       </div>
-      <i class="fa-solid fa-times toast-close" aria-hidden="true"></i>
+      <div class="toast-close">
+        <svg class="svg-icon" aria-hidden="true" viewBox="0 0 320 512"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg>
+      </div>
     `;
     
     // Add toast to container
