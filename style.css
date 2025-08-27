@@ -1650,11 +1650,11 @@ footer{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 1);
+        backdrop-filter: brightness(0%);
         width: 100%;
         min-height: 450px;
-        height: 90vh;
+        height: 100vh;
         transition: .3s;
         border-top: 3px solid var(--third-color); /* Metallic Yellow */
         box-sizing: border-box;
@@ -1670,7 +1670,7 @@ footer{
     }
     
     body.dark-mode .nav-menu {
-        background: rgba(18, 18, 18, 0.9);
+        background: rgba(26, 26, 26, 1);
     }
     
     .nav_menu_list{
