@@ -35,11 +35,14 @@ document.body.style.overflow = 'hidden';
 /* ----- NAVIGATION BAR FUNCTION ----- */
 function myMenuFunction(){
   var menuBtn = document.getElementById("myNavMenu");
+  var hamburgerIcon = document.getElementById("nav-icon3");
 
   if(menuBtn.className === "nav-menu"){
     menuBtn.className += " responsive";
+    hamburgerIcon.classList.add("open");
   } else {
     menuBtn.className = "nav-menu";
+    hamburgerIcon.classList.remove("open");
   }
 }
 
@@ -47,6 +50,7 @@ function myMenuFunction(){
 document.addEventListener('DOMContentLoaded', function() {
   // Get all navigation links
   const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+  const hamburgerIcon = document.getElementById("nav-icon3");
   
   // Add click event listener to each link
   navLinks.forEach(link => {
@@ -58,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (navMenu.classList.contains('responsive')) {
         // Remove responsive class to close the menu
         navMenu.className = 'nav-menu';
+        hamburgerIcon.classList.remove("open");
       }
     });
   });
