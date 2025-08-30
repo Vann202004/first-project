@@ -870,10 +870,75 @@ body.dark-mode #sun {
 .nav-menu-btn{
     display: none;
 }
-.nav-menu-btn .svg-icon{
-    font-size: 28px;
-    cursor: pointer;
+
+/* Hamburger menu icon styles */
+#nav-icon3 {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  margin: 0;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+#nav-icon3 span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: var(--text-color-second);
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+#nav-icon3 span:nth-child(1) {
+  top: 0px;
+}
+
+#nav-icon3 span:nth-child(2),
+#nav-icon3 span:nth-child(3) {
+  top: 10px;
+}
+
+#nav-icon3 span:nth-child(4) {
+  top: 20px;
+}
+
+#nav-icon3.open span:nth-child(1) {
+  top: 10px;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-icon3.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+#nav-icon3.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+#nav-icon3.open span:nth-child(4) {
+  top: 10px;
+  width: 0%;
+  left: 50%;
+}
+
+/* Dark mode adjustments for hamburger icon */
+body.dark-mode #nav-icon3 span {
+  background: var(--text-color-second);
+}
+
 .active-link{
     position: relative;
     color: var(--second-color); /* Philippine Red */
@@ -1083,6 +1148,13 @@ body.dark-mode .sticky {
     .scroll-btn .svg-icon {
         font-size: 16px;
     }
+}
+
+/* Hide scroll-btn in responsive views */
+@media only screen and (max-width: 900px) {
+  .scroll-btn {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 540px) {
